@@ -1,46 +1,68 @@
-import express from 'express'
-import expressSession from 'express-session'
-import path from 'path'
-import { Client } from 'pg'
-import dotenv from 'dotenv'
+import express from "express";
+import type { Request, Response, NextFunction } from "express";
+import path from "path";
+import expressSession from "express-session";
+import http from "http";
+import dotenv from "dotenv";
+dotenv.config();
 
-dotenv.config()
+import knexConfig from "./knexfile";
+import Knex from "knex";
+const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 
-export const client = new Client({
-	database: process.env.DB_NAME,
-	user: process.env.DB_USERNAME,
-	password: process.env.DB_PASSWORD
-})
-client.connect()
 
-const app = express()
+declare module "express-session" {
+  interface SessionData {
+    isLoggedIn?: boolean;
+  }
+}
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+const app = express();
+
+
+// Section 1: Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
-	expressSession({
-		secret: 'javidols',
-		resave: false,
-		saveUninitialized: true
-	})
-)
-declare module 'express-session' {
-	interface SessionData {
-			counter?: number
-		}
-	}
+  expressSession({
+    secret: "javidols",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 
-app.use(express.static('public'))
+// Controllers
+
+import { MemoController } from "./controllers/MemoController";
+
+// Services
+
+import { MemoService } from "./services/MemoService";
 
 
-app.use((req: express.Request, res: express.Response) => {
-	res.status(404)
-	res.sendFile(path.resolve('./public/404.html'))
-})
+// Section 2: Route Handlers
 
-const PORT = 8080
+import {idolsRoutes} from "./routers/idolRoutes"
 
-app.listen(PORT, () => {
-	console.log(`Listening at http://localhost:${PORT}/`)
-})
+app.use("/idols", idolsRoutes);
+
+
+// Section 3: Serve
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/images", express.static(path.join(__dirname, "uploads")));
+const guardMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  if (req.session.isLoggedIn) next();
+  else res.redirect("/");
+};
+app.use(guardMiddleware, express.static(path.join(__dirname, "private")));
+
+// Section 4: Error Handling
+app.use((_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "404.html"));
+});
+
+const PORT = 8080;
+server.listen(PORT, () => {
+  console.log(`listening at http://localhost:${PORT}`);
+});
