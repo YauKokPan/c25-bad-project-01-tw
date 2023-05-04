@@ -2,14 +2,12 @@ import express from "express";
 import type { Request, Response, NextFunction } from "express";
 import path from "path";
 import expressSession from "express-session";
-import http from "http";
 import dotenv from "dotenv";
 dotenv.config();
 
 import knexConfig from "./knexfile";
 import Knex from "knex";
 const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
-
 
 declare module "express-session" {
   interface SessionData {
@@ -19,13 +17,12 @@ declare module "express-session" {
 
 const app = express();
 
-
 // Section 1: Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   expressSession({
-    secret: "javidols",
+    secret: "JavIdols",
     resave: true,
     saveUninitialized: true,
   })
@@ -33,29 +30,25 @@ app.use(
 
 
 // Controllers
-
-import { MemoController } from "./controllers/MemoController";
+import { IdolController} from "./controllers/IdolController";
 
 // Services
+import { IdolService } from "./services/IdolService";
 
-import { MemoService } from "./services/MemoService";
 
+const idolService = new IdolService(knex);
+export const idolController = new IdolController(idolService);
 
 // Section 2: Route Handlers
 
-import {idolsRoutes} from "./routers/idolRoutes"
+import { idolRoutes } from "./routers/idolRoutes";
 
-app.use("/idols", idolsRoutes);
+app.use("/idols", idolRoutes);
 
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/images", express.static(path.join(__dirname, "uploads")));
-const guardMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  if (req.session.isLoggedIn) next();
-  else res.redirect("/");
-};
-app.use(guardMiddleware, express.static(path.join(__dirname, "private")));
+
 
 // Section 4: Error Handling
 app.use((_req, res) => {
@@ -63,6 +56,6 @@ app.use((_req, res) => {
 });
 
 const PORT = 8080;
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`listening at http://localhost:${PORT}`);
 });

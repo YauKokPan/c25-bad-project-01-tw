@@ -1,10 +1,8 @@
-import { memoController } from "./../server";
+import { idolController } from "./../main";
 import express from "express";
 
-export const memoRoutes = express.Router();
+export const idolRoutes = express.Router();
 
-memoRoutes.post("/", memoController.createMemo);
-memoRoutes.get("/", memoController.getAllMemos);
-memoRoutes.put("/:mid", memoController.updateMemo);
-memoRoutes.delete("/:mid", memoController.deleteMemo);
-memoRoutes.get("/like_memos", memoController.getLikeMemos);
+
+idolRoutes.get("/", idolController.getAllIdols);
+

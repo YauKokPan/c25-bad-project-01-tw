@@ -5,17 +5,12 @@ import type { Knex } from "knex";
 export class IdolService {
   constructor(private knex: Knex) {}
 
-  // getAllMemos() {}
-  getAllMemos = async () => {
+
+  getAllIdols = async () => {
     const queryResult = await this.knex<Idols>("javidols")
-      .select("id", "content", "image")
+      .select("id", "idol_id", "idol_name","idol_info","profile_pic")
       .orderBy("id", "desc");
 
     return queryResult;
   };
-
-  createMemo = async (content: string, imageFilename?: string) => {
-    await this.knex("memos").insert({ content, image: imageFilename });
-  };
-
 }
