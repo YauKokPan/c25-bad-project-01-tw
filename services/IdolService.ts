@@ -14,3 +14,15 @@ export class IdolService {
     return queryResult;
   };
 }
+
+export class GalleryService {
+  constructor(private knex: Knex) {}
+
+
+  getAllGallery = async () => {
+    const queryResult = await this.knex<Gallery>("gallery")
+      .select("id", "idol_id", "idol_name","idol_image")
+
+    return queryResult;
+  };
+}

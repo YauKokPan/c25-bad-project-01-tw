@@ -30,21 +30,24 @@ app.use(
 
 
 // Controllers
-import { IdolController} from "./controllers/IdolController";
+import { IdolController,GalleryController} from "./controllers/IdolController";
 
 // Services
-import { IdolService } from "./services/IdolService";
+import { IdolService,GalleryService } from "./services/IdolService";
 
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);
 
+const galleryService = new GalleryService(knex);
+export const galleryController = new GalleryController(galleryService);
+
 // Section 2: Route Handlers
 
-import { idolRoutes } from "./routers/idolRoutes";
+import { idolRoutes ,galleryRoutes} from "./routers/idolRoutes";
 
 app.use("/idols", idolRoutes);
-
+app.use("/gallery",galleryRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
