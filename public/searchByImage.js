@@ -27,3 +27,25 @@ function handleFiles(files) {
   dropZone.innerHTML = "";
   dropZone.appendChild(image);
 }
+
+windows.onload = () => {
+  searchByImage();
+};
+
+function searchByImage() {
+  document
+    .querySelector("#search-by-image")
+    .addEventListener("sumbit", async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const content = form.content.value;
+      const image = form.image.files[0];
+
+      const formData = new FormData();
+      formData.append("content", content);
+      formData.append("image", image);
+
+      const resp = await fetch("/");
+    });
+}
