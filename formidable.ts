@@ -10,7 +10,7 @@ export const form = formidable({
   uploadDir,
   keepExtensions: false,
   maxFiles: 1,
-  maxFileSize: 1024 ** 2 * 200, // the default limit is 1KB * 200
+  // maxFileSize: 1024 ** 2 * 200, // the default limit is 1KB * 200
   filter: (part) => part.mimetype?.startsWith("image/") || false,
   filename: (_originalName, _originalExt, part) => {
     const fieldName = part.name;
@@ -21,10 +21,12 @@ export const form = formidable({
 });
 
 export function formParsePromise(form: IncomingForm, req: express.Request) {
-  return new Promise<{ fields: formidable.Fields; files: formidable.Files }>((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) reject(err);
-      else resolve({ fields, files });
-    });
-  });
+  return new Promise<{ fields: formidable.Fields; files: formidable.Files }>(
+    (resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) reject(err);
+        else resolve({ fields, files });
+      });
+    }
+  );
 }

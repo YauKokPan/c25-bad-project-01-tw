@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#drop-zone {
+  border: 4px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.button {
+  cursor: pointer;
+  margin: 10px 10px;
+}
