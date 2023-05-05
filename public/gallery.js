@@ -1,17 +1,19 @@
 window.onload = () => {
-    loadIdols();
+  const params = new URLSearchParams(window.location.search);
+  const idolId = params.get("i");
+  loadIdols(idolId);
 };
 
-async function loadIdols() {
-
-    const resp = await fetch("/idols");
-    const idols = await resp.json();
-    let htmlStr = ``;
-    for (const idol of idols) {
-      htmlStr += `
+async function loadIdols(id) {
+  const resp = await fetch("/idols/" + id);
+  const idols = await resp.json();
+  console.log('response: ', idols)
+  let htmlStr = ``;
+  for (const idol of idols.data) {
+    htmlStr += `
+        ${idol.idol_name} - 
         ${idol.idol_info}
       `;
-    }
-    document.querySelector(".idol-info").innerHTML = htmlStr;
-
+  }
+  document.querySelector(".idol-info").innerHTML = htmlStr;
 }
