@@ -35,7 +35,7 @@ windows.onload = () => {
 function searchByImage() {
   document
     .querySelector("#search-by-image")
-    .addEventListener("sumbit", async (e) => {
+    .addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const form = e.target;
