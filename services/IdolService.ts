@@ -8,7 +8,7 @@ export class IdolService {
 
   getAllIdols = async () => {
     const queryResult = await this.knex<Idols>("javidols")
-      .select("id", "idol_id", "idol_name","idol_info","profile_pic")
+      .select("id", "idol_name","idol_info","profile_pic")
       .orderBy("id", "desc");
 
     return queryResult;

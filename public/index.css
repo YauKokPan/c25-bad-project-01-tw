@@ -47,8 +47,9 @@ body {
   height: 50%;
 }
 
-h3 {
-  padding-top: 10px;
+h1 {
+  text-align: center;
+  padding:10px 0px;
 }
 
 .idols-list {
@@ -72,6 +73,7 @@ h3 {
 
 .idols-list {
   display: flex;
+  justify-content: center;
 }
 
 .idol {

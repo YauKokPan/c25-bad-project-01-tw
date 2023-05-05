@@ -1,9 +1,9 @@
-copy javidols(idol_name,idol_info,profile_pic,idol_id)
-from '/Users/kokpanyau/Downloads/javidolsinfo.csv'
+copy javidols(idol_name,idol_info,profile_pic)
+from '/Users/kokpanyau/Documents/c25-bad-project-01-tw/data/javidolsinfo.csv'
 DELIMITER ','
 CSV HEADER;
 
 copy gallery(idol_name,idol_image,idol_id)
-from '/Users/kokpanyau/Downloads/javidolsphotos.csv'
+from '/Users/kokpanyau/Documents/c25-bad-project-01-tw/data/javidolsphotos.csv'
 DELIMITER ','
 CSV HEADER;
