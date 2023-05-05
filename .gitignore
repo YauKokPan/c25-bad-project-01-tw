@@ -1,0 +1,11 @@
+.DS_Store
+*/.DS_Store
+node_modules/
+.env
+tsconfig.json
+
+metal_env
+dataset
+uploads
+
+.python-version
