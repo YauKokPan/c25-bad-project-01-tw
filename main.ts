@@ -11,7 +11,12 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 
 declare module "express-session" {
   interface SessionData {
-    isLoggedIn?: boolean;
+    idol: {
+      id:number
+      idol_name:string
+      idol_info:string
+      profile_pic:string
+    }
   }
 }
 

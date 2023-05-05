@@ -3,9 +3,9 @@
 node_modules/
 .env
 tsconfig.json
-
 metal_env
 dataset
 uploads
-
 .python-version
+.pyenv
+ai_model/
