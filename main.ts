@@ -12,11 +12,11 @@ const knex = Knex(knexConfig[process.env.NODE_ENV || "development"]);
 declare module "express-session" {
   interface SessionData {
     idol: {
-      id:number
-      idol_name:string
-      idol_info:string
-      profile_pic:string
-    }
+      id: number;
+      idol_name: string;
+      idol_info: string;
+      profile_pic: string;
+    };
   }
 }
 
@@ -33,13 +33,15 @@ app.use(
   })
 );
 
-
 // Controllers
-import { IdolController,GalleryController} from "./controllers/IdolController";
+import {
+  IdolController,
+  GalleryController,
+  // UploadImageController,
+} from "./controllers/IdolController";
 
 // Services
-import { IdolService,GalleryService } from "./services/IdolService";
-
+import { IdolService, GalleryService } from "./services/IdolService";
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);
@@ -49,14 +51,13 @@ export const galleryController = new GalleryController(galleryService);
 
 // Section 2: Route Handlers
 
-import { idolRoutes ,galleryRoutes} from "./routers/idolRoutes";
+import { idolRoutes, galleryRoutes } from "./routers/idolRoutes";
 
 app.use("/idols", idolRoutes);
-app.use("/gallery",galleryRoutes);
+app.use("/gallery", galleryRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
-
 
 // Section 4: Error Handling
 app.use((_req, res) => {

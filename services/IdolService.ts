@@ -16,8 +16,8 @@ export class IdolService {
   getIdolsById = async (id: number) => {
     const result = await this.knex("javidols")
       .select("*")
-      .where("javidols.id", id)
-      // .join("gallery", "gallery.idol_id", "javidols.id");
+      .where("javidols.id", id);
+    // .join("gallery", "gallery.idol_id", "javidols.id");
     console.log("service getIdolsbyid: ", result);
     return result;
   };
@@ -27,7 +27,7 @@ export class GalleryService {
   constructor(private knex: Knex) {}
 
   getAllGallery = async () => {
-    const queryResult = await this.knex<Gallery>("gallery").select(
+    const queryResult = await this.knex<GalleryService>("gallery").select(
       "id",
       "idol_id",
       "idol_name",

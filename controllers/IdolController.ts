@@ -1,8 +1,5 @@
-import formidable from "formidable";
-import { form, formParsePromise } from "../utils/formidable";
 import { IdolService, GalleryService } from "../services/IdolService";
 import type { Request, Response } from "express";
-import { couldStartTrivia } from "typescript";
 
 export class IdolController {
   constructor(private idolService: IdolService) {}
@@ -42,3 +39,20 @@ export class GalleryController {
     }
   };
 }
+
+// export class UploadImageController {}
+
+// postIdolImage = async (req: Request, res: Response) => {
+//   try {
+//     form.parse(req, async (err, fields, files) => {
+//       res = await fetch("http://localhost:8080/postImage", {
+//         method: "POST",
+//         body: form,
+//       });
+//       const data = await res.json();
+//       res.json({ msg: "successfully post new image", data });
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to call the AI model." });
+//   }
+// };

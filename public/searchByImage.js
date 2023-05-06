@@ -39,13 +39,19 @@ function searchByImage() {
       e.preventDefault();
 
       const form = e.target;
-      const content = form.content.value;
-      const image = form.image.files[0];
+      // const content = form.content.value;
+      // const image = form.image.files[0];
 
-      const formData = new FormData();
-      formData.append("content", content);
-      formData.append("image", image);
+      const formData = new FormData(form);
+      // formData.append("content", content);
+      // formData.append("image", image);
 
-      const resp = await fetch("/");
+      const resp = await fetch("http://localhost:8080/postImage", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await resp.json();
+      document.querySelector("#upload-result").textContent = result;
     });
 }
