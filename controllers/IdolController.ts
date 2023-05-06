@@ -1,5 +1,5 @@
 import formidable from "formidable";
-import { form, formParsePromise } from "../formidable";
+import { form, formParsePromise } from "../utils/formidable";
 import { IdolService, GalleryService } from "../services/IdolService";
 import type { Request, Response } from "express";
 import { couldStartTrivia } from "typescript";
@@ -21,7 +21,7 @@ export class IdolController {
     try {
       const id = +req.params.id;
       const serviceResponse = await this.idolService.getIdolsById(id);
-      res.status(200).json({data: serviceResponse});
+      res.status(200).json({ data: serviceResponse });
     } catch (e) {
       console.error(e);
       res.status(500).json({ message: "internal server error" });
@@ -30,11 +30,11 @@ export class IdolController {
 }
 
 export class GalleryController {
-  constructor(private GalleryService: GalleryService) {}
+  constructor(private galleryService: GalleryService) {}
 
   getAllGallery = async (_req: Request, res: Response) => {
     try {
-      const gallery = await this.GalleryService.getAllGallery();
+      const gallery = await this.galleryService.getAllGallery();
       res.json(gallery); // pass array into res.json()
     } catch (err) {
       console.error(err);
