@@ -17,7 +17,7 @@ export class IdolService {
     const result = await this.knex("javidols")
       .select("*")
       .where("javidols.id", id)
-      .join("gallery", "gallery.idol_id", "javidols.id");
+      // .join("gallery", "gallery.idol_id", "javidols.id");
     console.log("service getIdolsbyid: ", result);
     return result;
   };
