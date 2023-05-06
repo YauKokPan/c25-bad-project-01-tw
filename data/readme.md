@@ -4,6 +4,6 @@ DELIMITER ','
 CSV HEADER;
 
 copy gallery(idol_name,idol_image,idol_id)
-from '/Users/kokpanyau/Documents/c25-bad-project-01-tw/data/javidolsphotos.csv'
+from '/Users/kokpanyau/Documents/c25-bad-project-01-tw/data/javidolsgallery.csv'
 DELIMITER ','
 CSV HEADER;
