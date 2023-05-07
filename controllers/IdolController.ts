@@ -38,6 +38,17 @@ export class GalleryController {
       res.status(500).json({ message: "internal server error" });
     }
   };
+
+  getGalleryById = async (req: Request, res: Response) => {
+    try {
+      const id = +req.params.id;
+      const serviceResponse = await this.galleryService.getGalleryById(id);
+      res.status(200).json({ data: serviceResponse });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "internal server error" });
+    }
+  };
 }
 
 // export class UploadImageController {}

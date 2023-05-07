@@ -47,3 +47,8 @@
     font-size: 36px;
     text-align: center;
   }
+
+  .idol-gallery{
+    display: flex;
+    flex-wrap: wrap;
+  }

@@ -2,6 +2,7 @@ window.onload = () => {
   const params = new URLSearchParams(window.location.search);
   const idolId = params.get("i");
   loadIdols(idolId);
+  loadGallery(idolId);
 };
 
 async function loadIdols(id) {
@@ -45,4 +46,17 @@ async function loadIdols(id) {
     `
   }
   document.querySelector(".idol-info").innerHTML = idolinfoStr;
+}
+
+async function loadGallery(id) {
+  const resp = await fetch("/gallery/" + id);
+  const idols = await resp.json();
+  console.log('response: ', idols)
+  let idolgalleryStr = ``;
+  for (const idol of idols.data) {
+    idolgalleryStr += `
+      <img src="./pictures/javidol-gallery/${idol.idol_name}/${idol.idol_image}" width="300px" height="auto">
+      `;
+  }
+  document.querySelector(".idol-gallery").innerHTML = idolgalleryStr;
 }

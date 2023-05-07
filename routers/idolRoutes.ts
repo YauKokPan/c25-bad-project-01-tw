@@ -13,4 +13,5 @@ export const postImageRoutes = express.Router();
 idolRoutes.get("/", idolController.getAllIdols);
 idolRoutes.get("/:id", idolController.getIdolsById);
 galleryRoutes.get("/", galleryController.getAllGallery);
+galleryRoutes.get("/:id",galleryController.getGalleryById)
 // idolRoutes.post("/postImage", uploadImageController.postIdolImage);

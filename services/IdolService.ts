@@ -36,4 +36,15 @@ export class GalleryService {
 
     return queryResult;
   };
+
+  getGalleryById = async (id:number) => {
+    const queryResult = await this.knex<GalleryService>("gallery")
+    .select('gallery.idol_image', 'javidols.idol_name')
+    .join('javidols', 'javidols.id', '=', 'gallery.idol_id')
+    .where('javidols.id', id);
+
+    return queryResult;
+  };
+
+
 }
