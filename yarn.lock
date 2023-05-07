@@ -320,6 +320,11 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@fancyapps/ui@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-5.0.17.tgz#bfa11293f72ffbb5550c6ae194c608c1fe35da90"
+  integrity sha512-NWxllyuFjNNs0CXnAnK4l2GbwUXqak0RAUNicH1AtbyNkI3pVsH+OuWMPE6aEdE7LVap91go8dPAZ840u/8K0Q==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"

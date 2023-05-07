@@ -12,6 +12,7 @@
     "author": "Pan Yau <panpanyau@gmail.com>",
     "license": "ISC",
     "dependencies": {
+        "@fancyapps/ui": "^5.0.17",
         "@types/express": "^4.17.17",
         "@types/formidable": "^2.0.5",
         "@types/jsonfile": "^6.1.1",
