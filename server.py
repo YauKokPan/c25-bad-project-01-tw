@@ -6,7 +6,7 @@ import cv2
 import dlib
 from PIL import Image
 import os
-
+resized_image = 0
 classes = ["楓可憐","川上奈奈美","望月絢香","宮下玲奈","中山文香"
            ,"庵姬花","白石茉莉奈","有岡美羽","工藤拉拉","美波桃","南乃空","深田詠美"]
 
