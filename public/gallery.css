@@ -115,9 +115,53 @@ body {
   object-fit: cover;
   cursor: pointer;
   padding: 3px;
+  display: none;
 }
 
 .gallery-title {
   font-size: 36px;
   text-align: center;
 }
+
+#show-more-btn {
+  display:block;
+  margin: auto;
+  height: 50px;
+  padding:0 50px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #2980b9;
+  color: #f1f1f1;
+  font-size:16px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+#show-more-btn:hover{
+  opacity: .8;
+}
+
+#show-less-btn {
+  display:none;
+  margin: auto;
+  height: 50px;
+  padding:0 50px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #2980b9;
+  color: #f1f1f1;
+  font-size:16px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+#show-less-btn:hover{
+  opacity: .8;
+}
+
+.button-control{
+  display: flex;
+  padding: 5px;
+}
+
+

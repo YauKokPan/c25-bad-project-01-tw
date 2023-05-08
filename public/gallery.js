@@ -64,7 +64,54 @@ async function loadGallery(id) {
   }
 
   document.querySelector(".idol-gallery").innerHTML = idolgalleryStr;
+
+  let displayedImages = 4;
+  const totalImages = $(".idol-image").length;
   
+  function updateGallery() {
+    $(".idol-image").hide();
+    $(".idol-image").slice(0, displayedImages).show();
+    
+    if (displayedImages >= totalImages) {
+      $("#show-more-btn").hide();
+    } else {
+      $("#show-more-btn").show();
+    }
+    
+    if (displayedImages <= 4) {
+      $("#show-less-btn").hide();
+    } else {
+      $("#show-less-btn").show();
+    }
+  }
+
+  
+  $(document).ready(function () {
+    console.log("Document ready!");
+    updateGallery();
+    
+    $("#show-more-btn").click(function(){
+      displayedImages += 8;
+      updateGallery();
+    });
+    
+    $("#show-less-btn").click(function(){
+      if (displayedImages < totalImages) {
+        displayedImages -= 8;
+      } else {
+        displayedImages = 4;
+      }
+      
+      updateGallery();
+    });
+  });
+  
+  // $(document).ready(function () {
+  //   $(".idol-image").slice(0, displayedImages).fadeIn();
+  //   $(".load-more").click(function(){
+  //     $(".idol-image").slice(0, totalImages).fadeIn();
+  //   })
+  // });
 
   // fancybox
   Fancybox.bind('[data-fancybox="gallery"]', {
