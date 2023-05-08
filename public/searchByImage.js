@@ -74,32 +74,32 @@ Dropzone.options.myDropzone = {
 //   uploadedImage.src = imageUrl;
 // });
 
-windows.onload = () => {
-  searchByImage();
-};
+// windows.onload = () => {
+//   searchByImage();
+// };
 
-function searchByImage() {
-  document
-    .querySelector("#search-by-image")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
+// function searchByImage() {
+//   document
+//     .querySelector("#search-by-image")
+//     .addEventListener("submit", async (e) => {
+//       e.preventDefault();
 
-      // const form = e.target;
-      // const content = form.content.value;
-      // const image = form.image.files[0];
-      const fileInput = document.getElementById("file-input");
-      const formData = new FormData();
-      formData.append("files", fileInput.files);
-      // formData.append("content", content);
-      // formData.append("image", image);
+//       // const form = e.target;
+//       // const content = form.content.value;
+//       // const image = form.image.files[0];
+//       const fileInput = document.getElementById("file-input");
+//       const formData = new FormData();
+//       formData.append("files", fileInput.files);
+//       // formData.append("content", content);
+//       // formData.append("image", image);
 
-      const resp = await fetch("http://localhost:8080/postImage", {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => console.log(res))
-        .catch((err) => ("Error occured", err));
-      const result = await resp.json();
-      document.querySelector("#upload-result").textContent = result;
-    });
-}
+//       const resp = await fetch("http://localhost:8080/postImage", {
+//         method: "POST",
+//         body: formData,
+//       })
+//         .then((res) => console.log(res))
+//         .catch((err) => ("Error occured", err));
+//       const result = await resp.json();
+//       document.querySelector("#upload-result").textContent = result;
+//     });
+// }
