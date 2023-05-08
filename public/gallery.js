@@ -55,13 +55,16 @@ async function loadGallery(id) {
   let idolgalleryStr = ``;
   for (const idol of idols.data) {
     idolgalleryStr += /*html*/ `
-    <a data-fancybox="gallery" data-src="./pictures/javidol-gallery/${idol.idol_name}/${idol.idol_image}">
-    <img src="./pictures/javidol-gallery/${idol.idol_name}/${idol.idol_image}" width="auto" height="200px"/>
-    </a>
+      <div class="col-3">
+        <a data-fancybox="gallery" data-src="./pictures/javidol-gallery/${idol.idol_name}/${idol.idol_image}">
+        <img src="./pictures/javidol-gallery/${idol.idol_name}/${idol.idol_image}" class="idol-image img-fluid">
+        </a>
+      </div>
       `;
   }
 
   document.querySelector(".idol-gallery").innerHTML = idolgalleryStr;
+  
 
   // fancybox
   Fancybox.bind('[data-fancybox="gallery"]', {

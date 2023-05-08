@@ -51,12 +51,8 @@ body {
 .idol-gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-.idol-gallery > a > img {
-  border-radius: 10%;
-}
 
 /* fancybox gallery CSS */
 .fancybox__container {
@@ -114,7 +110,12 @@ body {
   border-radius: 7px;
 }
 
-/* outer layout */
-.gallery-section {
-  padding: 60px 0;
+.idol-image {
+  width: 100%; 
+  height: 300px;
+  object-fit:cover;
+  cursor:pointer;
+  padding: 3px;
 }
+
+
