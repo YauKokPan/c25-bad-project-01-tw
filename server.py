@@ -6,13 +6,14 @@ import cv2
 import dlib
 from PIL import Image
 import os
-resized_image = 0
+
 classes = ["楓可憐","川上奈奈美","望月絢香","宮下玲奈","中山文香"
-           ,"庵姬花","白石茉莉奈","有岡美羽","工藤拉拉","美波桃","南乃空","深田詠美"]
+           ,"庵ひめか","白石茉莉奈","有岡みう","工藤ララ","美波もも","南乃そら","深田詠美"]
 
 app = Sanic("Python-Hosted-Model")
 
 detector = dlib.get_frontal_face_detector()
+file_types = ('.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG')
 ai_model = tf.keras.models.load_model('./ai_model/my_model.h5')
 
 @app.get("/postImage")
@@ -48,19 +49,31 @@ def callModel(request):
         resized_image = resized_image.reshape(-1, 96, 96, 3)
 
         predict = ai_model([resized_image], training=False)
-        # probs = tf.nn.softmax(predict)
-        class_indexes = tf.argmax(predict, axis=1).numpy()
+        tensor = tf.constant(predict)
+
+        max_index = tf.argmax(tensor, axis=1)[0].numpy()
+
+        # Get the shape of the tensor
+        _num_rows, num_cols = tensor.shape
+
+        sorted_indices = []
+
+        for i in sorted(range(num_cols), key=lambda x: abs(x-max_index), reverse=False):
+            _index = (0, i)
+            sorted_indices.append(i)
+
         results = []
+        for sorted_index in sorted_indices:
+            if sorted_index < len(classes):
+                class_name = classes[sorted_index]
+                probability = tf.nn.softmax(predict, axis=-1).numpy()[0][sorted_index]
+                result_str = f"{class_name}: probability {probability:.2f}"
+                results.append(result_str)
+            else:
+                result_str = f"Invalid class index: {sorted_index}"
+                results.append(result_str)
 
-        for i, class_idx in enumerate(class_indexes):
-            name = classes[class_idx]
-            p = np.max(predict[i].numpy())
-            results.append({
-                "name": name,
-                "probability": float(p)
-            })
-
-        return json({ "data": results })
+        return json({ "results": results })
          
     except ValueError as e:
          return json({"msg":"upload failed", "error": e})
