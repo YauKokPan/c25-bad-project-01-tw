@@ -67,17 +67,17 @@ async function loadGallery(id) {
 
   let displayedImages = 4;
   const totalImages = $(".idol-image").length;
-  
+
   function updateGallery() {
     $(".idol-image").hide();
     $(".idol-image").slice(0, displayedImages).fadeIn();
-    
+
     if (displayedImages >= totalImages) {
       $("#show-more-btn").hide();
     } else {
       $("#show-more-btn").show();
     }
-    
+
     if (displayedImages <= 4) {
       $("#show-less-btn").hide();
     } else {
@@ -85,27 +85,26 @@ async function loadGallery(id) {
     }
   }
 
-  
   $(document).ready(function () {
     console.log("Document ready!");
     updateGallery();
-    
-    $("#show-more-btn").click(function(){
+
+    $("#show-more-btn").click(function () {
       displayedImages += 8;
       updateGallery();
     });
-    
-    $("#show-less-btn").click(function(){
+
+    $("#show-less-btn").click(function () {
       if (displayedImages < totalImages) {
         displayedImages -= 8;
       } else {
         displayedImages = 4;
       }
-      
+
       updateGallery();
     });
   });
-  
+
   // $(document).ready(function () {
   //   $(".idol-image").slice(0, displayedImages).fadeIn();
   //   $(".load-more").click(function(){
@@ -144,11 +143,6 @@ async function loadGallery(id) {
           return this.contentDim > this.viewportDim;
         },
       },
-    },
-
-    Carousel: {
-      // Remove the navigation arrows
-      Navigation: false,
     },
   });
 }
