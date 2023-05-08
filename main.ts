@@ -4,6 +4,9 @@ import path from "path";
 import expressSession from "express-session";
 import dotenv from "dotenv";
 dotenv.config();
+import multer from "multer";
+import fs from "fs";
+import axios from "axios";
 
 import knexConfig from "./knexfile";
 import Knex from "knex";
@@ -21,6 +24,34 @@ declare module "express-session" {
 }
 
 const app = express();
+
+// searchByImage upload photos
+const upload = multer({
+  dest: "./public/uploads/",
+  fileFilter: (req, file, cb) => {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|webp)$/)) {
+      return cb(new Error("只能上傳圖片。"));
+    }
+    cb(null, true);
+  },
+});
+// 處理圖片提交事件
+app.post("/postImage", upload.single("file"), async (req, res) => {
+  const oldPath = req.file!.path;
+  const newPath = `${req.file!.originalname}`;
+  fs.rename(oldPath, newPath, () => {
+    // res.send("success");
+    console.log("uploaded file: ", newPath);
+  });
+  try {
+    const resp = await axios(`http://localhost:8000/postImage?img=${newPath}`);
+    const result = resp.data;
+    console.log("python result: ", result);
+  } catch (e) {
+    console.log(e);
+  }
+  res.status(200).json({ msg: "uploaded" });
+});
 
 // Section 1: Middleware
 app.use(express.urlencoded({ extended: true }));

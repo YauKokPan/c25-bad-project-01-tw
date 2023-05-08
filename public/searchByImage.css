@@ -8,7 +8,7 @@ h1 {
   align-items: center;
 }
 
-#drop-zone {
+#myDropzone {
   border: 4px dashed #ccc;
   padding: 20px;
   text-align: center;
@@ -16,7 +16,7 @@ h1 {
   border-radius: 20px;
 }
 
-.button {
+#submit {
   cursor: pointer;
   margin: 10px 10px;
 }

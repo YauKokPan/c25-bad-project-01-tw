@@ -5,6 +5,7 @@ import numpy as np
 import cv2
 import dlib
 from PIL import Image
+import os
 
 classes = ["楓可憐","川上奈奈美","望月絢香","宮下玲奈","中山文香"
            ,"庵姬花","白石茉莉奈","有岡美羽","工藤拉拉","美波桃","南乃空","深田詠美"]
@@ -14,14 +15,17 @@ app = Sanic("Python-Hosted-Model")
 detector = dlib.get_frontal_face_detector()
 ai_model = tf.keras.models.load_model('./ai_model/my_model.h5')
 
-@app.post("/postImage")
+@app.get("/postImage")
 def callModel(request):
     try:
          # Get the uploaded image from the request
-        uploaded_file = request.files.get('image')
-        filename = uploaded_file.name
+        # uploaded_file = request.files.get('image')
+        # filename = uploaded_file.name
+        uploaded_file = request.args.get('img')
+        file_path = os.path.join(os.getcwd(),'public', 'uploads', uploaded_file)
+        print(f"file with path: {file_path}")
 
-        image = cv2.imread('./public/uploads/'+ filename)
+        image = cv2.imread(file_path)
         
 
         #another method to get the numpyArray of the image
@@ -29,7 +33,7 @@ def callModel(request):
         
 
         dets = detector(image, 1)
-        open_img = Image.open('./public/uploads/'+filename)
+        open_img = Image.open(file_path)
 
         # Crop the image as needed
         for _k, d in enumerate(dets):
@@ -58,8 +62,8 @@ def callModel(request):
 
         return json({ "data": results })
          
-    except Exception:
-         return json({"msg":"upload failed"})
+    except ValueError as e:
+         return json({"msg":"upload failed", "error": e})
         
     
 

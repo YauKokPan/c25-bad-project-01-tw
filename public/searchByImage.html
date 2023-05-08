@@ -6,27 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search by image</title>
 
+    <!-- dropzone JS -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+      type="text/css"
+    />
+
     <!-- custom css -->
-    <link rel="stylesheet" href="./searchByImage.css">
+    <link rel="stylesheet" href="./searchByImage.css" />
   </head>
   <body>
     <h1>Search by image</h1>
 
     <div class="text-center flex gap">
       <div id="uploads">
-        <form id="search-by-image">
-          <div id="drop-zone">
-            <p>將文件拖到此處上傳</p>
-            <input type="file" id="file-input" >
-          </div>
-          <button class=button type="submit">上傳文件</button>
+        <form
+          id="myDropzone"
+          class="dropzone"
+          action="/postImage"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <button id="submit" type="submit" name="image">上傳</button>
         </form>
 
-        </div>
-        
-      <div id="upload-result">
-        
-      </div>
+        <div id="upload-result"></div>
       </div>
     </div>
 
