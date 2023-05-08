@@ -70,7 +70,7 @@ async function loadGallery(id) {
   
   function updateGallery() {
     $(".idol-image").hide();
-    $(".idol-image").slice(0, displayedImages).show();
+    $(".idol-image").slice(0, displayedImages).fadeIn();
     
     if (displayedImages >= totalImages) {
       $("#show-more-btn").hide();
