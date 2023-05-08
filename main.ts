@@ -25,34 +25,6 @@ declare module "express-session" {
 
 const app = express();
 
-// searchByImage upload photos
-const upload = multer({
-  dest: "./public/uploads/",
-  fileFilter: (req, file, cb) => {
-    if (!file.originalname.match(/\.(jpg|jpeg|png|webp)$/)) {
-      return cb(new Error("只能上傳圖片。"));
-    }
-    cb(null, true);
-  },
-});
-// 處理圖片提交事件
-app.post("/postImage", upload.single("file"), async (req, res) => {
-  const oldPath = req.file!.path;
-  const newPath = `${req.file!.originalname}`;
-  fs.rename(oldPath, newPath, () => {
-    // res.send("success");
-    console.log("uploaded file: ", newPath);
-  });
-  try {
-    const resp = await axios(`http://localhost:8000/postImage?img=${newPath}`);
-    const result = resp.data;
-    console.log("python result: ", result);
-  } catch (e) {
-    console.log(e);
-  }
-  res.status(200).json({ msg: "uploaded" });
-});
-
 // Section 1: Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -63,6 +35,46 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// const directory = "./public/uploads";
+
+// // Create the directory if it does not exist
+// if (!fs.existsSync(directory)) {
+//   fs.mkdirSync(directory, { recursive: true });
+// }
+// searchByImage upload photos
+// const uploadPath = path.join(__dirname, "public", "uploads");
+// console.log("uploadPath: ", uploadPath);
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, `${path.join(__dirname, "public", "uploads")}`);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({
+  storage: storage,
+});
+// 處理圖片提交事件
+app.post("/postImage", upload.single("file"), async (req, res) => {
+  const filename = req.file!.filename;
+  console.log("fullpath: ", filename);
+  // const newPath = `${req.file!.originalname}`;
+  // fs.rename(oldPath, newPath, () => {
+  //   console.log("uploaded file: ", newPath);
+  // });
+  try {
+    const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
+    const result = resp.data;
+    console.log(result);
+    console.log("python result: ", result);
+  } catch (e) {
+    // console.log(e);
+  }
+  res.status(200).json({ msg: "uploaded" });
+});
 
 // Controllers
 import {
