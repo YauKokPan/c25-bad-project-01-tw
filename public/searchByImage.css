@@ -82,7 +82,7 @@ h2 {
   padding-top: 2%;
 }
 
-#upload-result > div > div > img {
+#upload-result > div > div > a > img {
   object-fit: cover;
   width: 150px;
   height: 150px;
