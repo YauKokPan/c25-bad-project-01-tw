@@ -22,7 +22,7 @@ function updateUI(file, response) {
   for (let elem of response.data) {
     htmlStr += `<div class="data data-${elem.id}" idol-name="${elem.name}">
     <div><img src='/pictures/javidols-profile-pic/${elem.img}' /></div>
-    <div class='name'>Name: ${elem.name}}</div>
+    <div class='name'>Name: ${elem.name}</div>
     <div class='probability'>${elem.prob}</div>
     </div>`;
   }
