@@ -1,11 +1,11 @@
 Dropzone.options.myDropzone = {
   paramName: "file", // The name that will be used to transfer the file
-  acceptedFiles: "image/*",
+  acceptedFiles: "image/jpeg,image/jpg",
   autoProcessQueue: true,
   addRemoveLinks: true,
   maxFiles: 1,
-  thumbnailWidth: 200,
-  thumbnailHeight: 200,
+  thumbnailWidth: 250,
+  thumbnailHeight: 250,
 };
 
 // init: function () {
