@@ -97,11 +97,12 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
 import {
   IdolController,
   GalleryController,
+  SearchController,
   // UploadImageController,
 } from "./controllers/IdolController";
 
 // Services
-import { IdolService, GalleryService } from "./services/IdolService";
+import { IdolService, GalleryService, SearchService } from "./services/IdolService";
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);
@@ -109,12 +110,16 @@ export const idolController = new IdolController(idolService);
 const galleryService = new GalleryService(knex);
 export const galleryController = new GalleryController(galleryService);
 
+const searchService = new SearchService(knex);
+export const searchController = new SearchController(searchService);
+
 // Section 2: Route Handlers
 
-import { idolRoutes, galleryRoutes } from "./routers/idolRoutes";
+import { idolRoutes, galleryRoutes, searchRoutes } from "./routers/idolRoutes";
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
+app.use("/search", searchRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
