@@ -80,9 +80,12 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
             id: obj[0].id,
             img: obj[0].profile_pic,
           };
+
           output.push(outputObj);
+          console.log("123", outputObj);
         });
     }
+
     res.status(200).json({ msg: "uploaded", data: output });
   } catch (e) {
     console.log(e);
