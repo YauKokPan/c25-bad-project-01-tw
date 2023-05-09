@@ -2,7 +2,7 @@
 
 h2 {
   text-align: center;
-  font-size: 32px;
+  font-size: 40px;
 }
 
 .text-center {
@@ -17,12 +17,12 @@ h2 {
   text-align: center;
   font-size: 26px;
   border-radius: 20px;
-  width: auto;
-  height: auto;
+  width: 50vw;
+  height: 40vh;
 }
 
 .dz-message {
-  font-size: 20px;
+  font-size: 26px;
   font-family: "cwTeXYen", sans-serif;
   font-weight: 600;
 }
@@ -40,7 +40,7 @@ h2 {
 } */
 
 .dropzone .dz-message a {
-  font-size: 16px; /* Change this value to your desired font size */
+  font-size: 26px; /* Change this value to your desired font size */
 }
 
 .flex {
