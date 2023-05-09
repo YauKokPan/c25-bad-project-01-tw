@@ -1,18 +1,17 @@
 window.onload = () => {
-    loadIdols();
+  loadIdols();
 };
 
 async function loadIdols() {
-
-    const resp = await fetch("/idols");
-    const idols = await resp.json();
-    let htmlStr = ``;
-    for (const idol of idols) {
-      htmlStr += `
+  const resp = await fetch("/idols");
+  const idols = await resp.json();
+  let htmlStr = ``;
+  for (const idol of idols) {
+    htmlStr += `
         <div class="idol" id="idol-${idol.id}">
             <div class="profile-pic">
             <a href="./gallery.html?i=${idol.id}">
-            <img src="./pictures/javidols-profile-pic/${idol.profile_pic}" width="150px" height="150px">
+            <img src="./pictures/javidols-profile-pic/${idol.profile_pic}" class="image-scale">
             </a>
             
             </div>
@@ -21,11 +20,6 @@ async function loadIdols() {
             </div>
           </div>
       `;
-    }
-    document.querySelector(".idols-list").innerHTML = htmlStr;
-
+  }
+  document.querySelector(".idols-list").innerHTML = htmlStr;
 }
-
-
-
-
