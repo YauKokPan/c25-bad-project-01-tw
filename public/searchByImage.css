@@ -1,5 +1,8 @@
-h1 {
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+h2 {
   text-align: center;
+  font-size: 32px;
 }
 
 .text-center {
@@ -10,15 +13,34 @@ h1 {
 
 #myDropzone {
   border: 4px dashed #ccc;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
-  font-size: 18px;
+  font-size: 26px;
   border-radius: 20px;
+  width: auto;
+  height: auto;
 }
 
-#submit {
+.dz-message {
+  font-size: 20px;
+  font-family: "cwTeXYen", sans-serif;
+  font-weight: 600;
+}
+
+/* #submit {
   cursor: pointer;
-  margin: 10px 10px;
+  font-size: 6px;
+  font-weight: 400;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1.5px solid #e2d5d5;
+  display: block;
+  margin-top: 100px;
+  margin-left: 0px;
+} */
+
+.dropzone .dz-message a {
+  font-size: 16px; /* Change this value to your desired font size */
 }
 
 .flex {

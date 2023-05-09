@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./searchByImage.css" />
   </head>
   <body>
-    <h1>Search by image</h1>
+    <h2>Search by image</h2>
 
     <div class="text-center flex gap">
       <div id="uploads">
@@ -29,7 +29,10 @@
           method="POST"
           enctype="multipart/form-data"
         >
-          <button id="submit" type="submit" name="image">上傳</button>
+          <div class="dz-message" data-dz-message>
+            <span>將文件拖到此處 或 按此上傳</span>
+          </div>
+          <!-- <button id="submit" type="submit" name="image">submit</button> -->
         </form>
 
         <div id="upload-result"></div>

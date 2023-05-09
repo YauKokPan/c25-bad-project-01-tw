@@ -1,34 +1,32 @@
 Dropzone.options.myDropzone = {
   paramName: "file", // The name that will be used to transfer the file
   acceptedFiles: "image/*",
-  autoProcessQueue: false,
-  dictDefaultMessage: "將文件拖到此處 或 按此上傳",
+  autoProcessQueue: true,
   addRemoveLinks: true,
   maxFiles: 1,
-
+  thumbnailWidth: 100,
+  thumbnailHeight: 100,
   init: function () {
-    var myDropzone = this;
-
-    // First change the button to actually tell Dropzone to process the queue.
-    this.element
-      .querySelector("button[type=submit]")
-      .addEventListener("click", function (e) {
-        // Make sure that the form isn't actually being sent.
-        e.preventDefault();
-        e.stopPropagation();
-        myDropzone.processQueue();
-      });
-
     // this.on("complete", function (file, response) {
     //   // 上傳成功後，重新導向到另一個頁面
-    //   window.location.href = "http://0.0.0.0:8000/";
+    //   //   window.location.href = "http://0.0.0.0:8000/";
+    //   location.reload();
     // });
+    // First change the button to actually tell Dropzone to process the queue.
+    // this.element
+    //   .querySelector("button[type=submit]")
+    //   .addEventListener("click", function (e) {
+    //     // Make sure that the form isn't actually being sent.
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     myDropzone.processQueue();
+    //   });
   },
 };
 
 //-----------------old code-----------------/
 // const dropZone = document.getElementById("drop-zone");
-
+``;
 // dropZone.addEventListener("dragover", (event) => {
 //   event.preventDefault();
 //   dropZone.classList.add("dragover");

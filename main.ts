@@ -36,18 +36,10 @@ app.use(
   })
 );
 
-// const directory = "./public/uploads";
-
-// // Create the directory if it does not exist
-// if (!fs.existsSync(directory)) {
-//   fs.mkdirSync(directory, { recursive: true });
-// }
-// searchByImage upload photos
-// const uploadPath = path.join(__dirname, "public", "uploads");
-// console.log("uploadPath: ", uploadPath);
+const uploadPath = path.join(__dirname, "public", "uploads");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `${path.join(__dirname, "public", "uploads")}`);
+    cb(null, `${uploadPath}`);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -60,11 +52,7 @@ const upload = multer({
 // 處理圖片提交事件
 app.post("/postImage", upload.single("file"), async (req, res) => {
   const filename = req.file!.filename;
-  console.log("fullpath: ", filename);
-  // const newPath = `${req.file!.originalname}`;
-  // fs.rename(oldPath, newPath, () => {
-  //   console.log("uploaded file: ", newPath);
-  // });
+  // console.log("fullpath: ", filename);
   try {
     const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
     const result = resp.data;
