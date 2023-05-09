@@ -58,7 +58,32 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
     const result = resp.data;
     console.log(result);
     console.log("you are in nodejs python result: ", result);
-    res.status(200).json({ msg: "uploaded", data: result });
+    const output:
+      | {
+          name: string;
+          prob: number;
+          id: number;
+          img: string;
+        }[]
+      | null = [];
+    for (let elem of result.results) {
+      console.log("elem", elem);
+      const name = elem.split(":")[0];
+      const prob = elem.split(" ").pop();
+      await knex("javidols")
+        .select("*")
+        .where("idol_name", name)
+        .then((obj) => {
+          const outputObj = {
+            name,
+            prob,
+            id: obj[0].id,
+            img: obj[0].profile_pic,
+          };
+          output.push(outputObj);
+        });
+    }
+    res.status(200).json({ msg: "uploaded", data: output });
   } catch (e) {
     console.log(e);
     res.status(405).json({ msg: "upload failed" });

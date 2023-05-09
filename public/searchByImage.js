@@ -8,10 +8,27 @@ let myDropzone = new Dropzone("#myDropzone", {
   thumbnailHeight: 300,
   url: "http://localhost:8080/postImage",
   success: function (file, response) {
-    console.log("upload complete", file, response);
-    document.querySelector("#upload-result").innerHTML = response.data.results;
+    updateUI(file, response);
   },
+  // function (file, response) {
+  //   console.log("upload complete", file, response);
+  //   document.querySelector("#upload-result").innerHTML = response.data.results;
+  // },
 });
+
+function updateUI(file, response) {
+  console.log("upload complete", file, response);
+  let htmlStr = "";
+  for (let elem of response.data) {
+    htmlStr += `<div class="data data-${elem.id}" idol-name="${elem.name}">
+    <div><img src='/pictures/javidols-profile-pic/${elem.img}' /></div>
+    <div class='name'>Name: ${elem.name}}</div>
+    <div class='probability'>${elem.prob}</div>
+    </div>`;
+  }
+
+  document.querySelector("#upload-result").innerHTML = htmlStr;
+}
 // Dropzone.options.myDropzone = {
 //   paramName: "file", // The name that will be used to transfer the file
 //   acceptedFiles: "image/jpeg,image/jpg",
