@@ -3,6 +3,7 @@
 h2 {
   text-align: center;
   font-size: 40px;
+  padding-top: 1%;
 }
 
 .text-center {
@@ -15,19 +16,24 @@ h2 {
   border: 4px dashed #ccc;
   padding: 10px;
   text-align: center;
-  font-size: 26px;
+  font-size: 10px;
   border-radius: 20px;
-  width: 40vw;
+  width: 30vw;
   height: 40vh;
   cursor: pointer;
 }
 
 .dz-message {
-  font-size: 26px;
+  font-size: 20px;
   font-family: "cwTeXYen", sans-serif;
-  font-weight: 600;
+  font-weight: 200;
 }
 
+#myDropzone > .dz-preview {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 /* #submit {
   cursor: pointer;
   font-size: 6px;
@@ -40,24 +46,43 @@ h2 {
   margin-left: 0px;
 } */
 .dropzone .dz-preview .dz-image {
-  width: 30vw;
-  height: 30vh;
+  width: 10vw;
+  height: 10vh;
   text-align: center;
 }
 
 .dropzone .dz-message a {
-  font-size: 26px; /* Change this value to your desired font size */
+  font-size: 6px; /* Change this value to your desired font size */
 }
 
 .dz-success-mark svg path {
   fill: #535353; /* Replace with your desired color */
+  font-size: 10%;
 }
 
 .flex {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .gap {
-  gap: 100px;
+  gap: 1%;
+}
+
+.dropbox-padding {
+  padding-top: 2%;
+}
+
+#upload-result > div > div > img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
 }

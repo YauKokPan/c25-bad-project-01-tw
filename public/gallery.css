@@ -75,8 +75,8 @@ body {
 
   --f-button-border-radius: 8px;
 
-  --f-button-svg-width: 20px;
-  --f-button-svg-height: 20px;
+  --f-button-svg-width: 50px;
+  --f-button-svg-height: 50px;
 
   --f-button-svg-stroke-width: 1.5;
   --f-button-svg-filter: none;
@@ -167,5 +167,3 @@ body {
   display: flex;
   padding: 5px;
 }
-
-
