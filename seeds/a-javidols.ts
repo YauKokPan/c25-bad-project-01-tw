@@ -3,6 +3,12 @@ import path from "path";
 import Papa from "papaparse";
 import { Knex } from "knex";
 
+interface JavIdol {
+  idol_name: string;
+  idol_info: string;
+  profile_pic: string;
+}
+
 export async function seed(knex: Knex): Promise<void> {
   await knex("gallery").del();
   await knex("javidols").del();
@@ -15,7 +21,7 @@ export async function seed(knex: Knex): Promise<void> {
       "utf8"
     );
 
-    const { data, errors } = Papa.parse(csvString, {
+    let { data, errors } = Papa.parse(csvString, {
       header: true,
       dynamicTyping: true,
     });
@@ -29,7 +35,7 @@ export async function seed(knex: Knex): Promise<void> {
       INSERT INTO javidols (idol_name, idol_info, profile_pic)
       VALUES ${data
         .map(
-          (row: { [key: string]: string }) =>
+          (row: JavIdol) =>
             `('${row.idol_name}', '${row.idol_info}', '${row.profile_pic}')`
         )
         .join(", ")};

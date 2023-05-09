@@ -3,6 +3,12 @@ import path from "path";
 import Papa from "papaparse";
 import { Knex } from "knex";
 
+interface GalleryData {
+  idol_name: string;
+  idol_image: string;
+  idol_id: number;
+}
+
 export async function seed(knex: Knex): Promise<void> {
   try {
     const csvString = fs.readFileSync(
@@ -24,7 +30,7 @@ export async function seed(knex: Knex): Promise<void> {
       INSERT INTO gallery (idol_name,idol_image,idol_id)
       VALUES ${data
         .map(
-          (row: { [key: string]: string }) =>
+          (row: GalleryData) =>
             `('${row.idol_name}', '${row.idol_image}', '${row.idol_id}')`
         )
         .join(", ")};
