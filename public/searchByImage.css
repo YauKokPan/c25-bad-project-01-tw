@@ -19,6 +19,7 @@ h2 {
   border-radius: 20px;
   width: 40vw;
   height: 40vh;
+  cursor: pointer;
 }
 
 .dz-message {
