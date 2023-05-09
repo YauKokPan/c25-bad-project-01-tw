@@ -17,8 +17,8 @@ h2 {
   text-align: center;
   font-size: 26px;
   border-radius: 20px;
-  width: 60vw;
-  height: 60vh;
+  width: 40vw;
+  height: 40vh;
 }
 
 .dz-message {
@@ -39,12 +39,17 @@ h2 {
   margin-left: 0px;
 } */
 .dropzone .dz-preview .dz-image {
-  width: 40vw;
-  height: 40vh;
+  width: 30vw;
+  height: 30vh;
+  text-align: center;
 }
 
 .dropzone .dz-message a {
   font-size: 26px; /* Change this value to your desired font size */
+}
+
+.dz-success-mark svg path {
+  fill: #535353; /* Replace with your desired color */
 }
 
 .flex {
