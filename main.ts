@@ -82,13 +82,13 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
           };
 
           output.push(outputObj);
-          console.log("123", outputObj);
+          // console.log("123", outputObj);
         });
     }
 
     res.status(200).json({ msg: "uploaded", data: output });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(405).json({ msg: "upload failed" });
   }
 });
@@ -102,7 +102,11 @@ import {
 } from "./controllers/IdolController";
 
 // Services
-import { IdolService, GalleryService, SearchService } from "./services/IdolService";
+import {
+  IdolService,
+  GalleryService,
+  SearchService,
+} from "./services/IdolService";
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);

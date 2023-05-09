@@ -4,8 +4,8 @@ let myDropzone = new Dropzone("#myDropzone", {
   autoProcessQueue: true,
   addRemoveLinks: true,
   maxFiles: 1,
-  thumbnailWidth: 160,
-  thumbnailHeight: 160,
+  thumbnailWidth: 350,
+  thumbnailHeight: 340,
   url: "http://localhost:8080/postImage",
   success: function (file, response) {
     updateUI(file, response);
