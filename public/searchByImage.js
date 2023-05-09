@@ -1,4 +1,4 @@
-Dropzone.options.myDropzone = {
+let myDropzone = new Dropzone("#myDropzone", {
   paramName: "file", // The name that will be used to transfer the file
   acceptedFiles: "image/jpeg,image/jpg",
   autoProcessQueue: true,
@@ -6,25 +6,42 @@ Dropzone.options.myDropzone = {
   maxFiles: 1,
   thumbnailWidth: 300,
   thumbnailHeight: 300,
-};
+  url: "http://localhost:8080/postImage",
+  success: function (file, response) {
+    console.log("upload complete", file, response);
+    document.querySelector("#upload-result").innerHTML = response.data.results;
+  },
+});
+// Dropzone.options.myDropzone = {
+//   paramName: "file", // The name that will be used to transfer the file
+//   acceptedFiles: "image/jpeg,image/jpg",
+//   autoProcessQueue: true,
+//   addRemoveLinks: true,
+//   maxFiles: 1,
+//   thumbnailWidth: 300,
+//   thumbnailHeight: 300,
 
-// init: function () {
-// this.on("complete", function (file, response) {
-//   // 上傳成功後，重新導向到另一個頁面
-//   //   window.location.href = "http://0.0.0.0:8000/";
-//   location.reload();
-// });
-// First change the button to actually tell Dropzone to process the queue.
-// this.element
-//   .querySelector("button[type=submit]")
-//   .addEventListener("click", function (e) {
-//     // Make sure that the form isn't actually being sent.
-//     e.preventDefault();
-//     e.stopPropagation();
-//     myDropzone.processQueue();
-//   });
-// },
-
+//   init: function () {
+//     this.on("complete", function (file, response) {
+//       console.log(file);
+//       console.log("check!!!!", response);
+//     });
+//     // this.on("complete", function (file, response) {
+//     //   // 上傳成功後，重新導向到另一個頁面
+//     //   //   window.location.href = "http://0.0.0.0:8000/";
+//     //   location.reload();
+//     // });
+//     // First change the button to actually tell Dropzone to process the queue.
+//     // this.element
+//     //   .querySelector("button[type=submit]")
+//     //   .addEventListener("click", function (e) {
+//     //     // Make sure that the form isn't actually being sent.
+//     //     e.preventDefault();
+//     //     e.stopPropagation();
+//     //     myDropzone.processQueue();
+//     //   });
+//   },
+// };
 //-----------------old code-----------------/
 // const dropZone = document.getElementById("drop-zone");
 // dropZone.addEventListener("dragover", (event) => {

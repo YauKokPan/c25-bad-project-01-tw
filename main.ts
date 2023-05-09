@@ -57,11 +57,12 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
     const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
     const result = resp.data;
     console.log(result);
-    console.log("python result: ", result);
+    console.log("you are in nodejs python result: ", result);
+    res.status(200).json({ msg: "uploaded", data: result });
   } catch (e) {
-    // console.log(e);
+    console.log(e);
+    res.status(405).json({ msg: "upload failed" });
   }
-  res.status(200).json({ msg: "uploaded" });
 });
 
 // Controllers

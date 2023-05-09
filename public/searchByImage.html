@@ -22,17 +22,11 @@
 
     <div class="text-center flex gap">
       <div id="uploads">
-        <form
-          id="myDropzone"
-          class="dropzone"
-          action="/postImage"
-          method="POST"
-          enctype="multipart/form-data"
-        >
+        <form id="myDropzone">
           <div class="dz-message" data-dz-message>
             <span>將文件拖到此處 或 按此上傳</span>
           </div>
-          <!-- <button id="submit" type="submit" name="image">submit</button> -->
+          <button id="submit" type="submit" name="image">submit</button>
         </form>
 
         <div id="upload-result"></div>
