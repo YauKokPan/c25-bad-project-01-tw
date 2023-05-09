@@ -4,8 +4,8 @@ Dropzone.options.myDropzone = {
   autoProcessQueue: true,
   addRemoveLinks: true,
   maxFiles: 1,
-  thumbnailWidth: 250,
-  thumbnailHeight: 250,
+  thumbnailWidth: 300,
+  thumbnailHeight: 300,
 };
 
 // init: function () {
