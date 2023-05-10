@@ -43,8 +43,10 @@ searchForm.addEventListener("submit", async (event) => {
       const resultItem = document.createElement("div");
       resultItem.innerHTML = `
         <h3>${result.idol_name}</h3>
+        <a href="./gallery.html?i=${result.id}">
+          <img src="./pictures/javidols-profile-pic/${result.profile_pic}" alt="${result.idol_name}" height="125px">
+        </a>
         <p>${result.idol_info}</p>
-        <img src="./pictures/javidols-profile-pic/${result.profile_pic}" alt="${result.idol_name}" height="125px">
       `;
       searchResults.appendChild(resultItem);
     });
