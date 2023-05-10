@@ -98,6 +98,7 @@ import {
   IdolController,
   GalleryController,
   SearchController,
+  PageController,
   // UploadImageController,
 } from "./controllers/IdolController";
 
@@ -106,6 +107,7 @@ import {
   IdolService,
   GalleryService,
   SearchService,
+  PageService,
 } from "./services/IdolService";
 
 const idolService = new IdolService(knex);
@@ -117,13 +119,17 @@ export const galleryController = new GalleryController(galleryService);
 const searchService = new SearchService(knex);
 export const searchController = new SearchController(searchService);
 
+const pageService = new PageService(knex);
+export const pageController = new PageController(pageService);
+
 // Section 2: Route Handlers
 
-import { idolRoutes, galleryRoutes, searchRoutes } from "./routers/idolRoutes";
+import { idolRoutes, galleryRoutes, searchRoutes, pageRoutes } from "./routers/idolRoutes";
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/search", searchRoutes);
+app.use('/page',pageRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));

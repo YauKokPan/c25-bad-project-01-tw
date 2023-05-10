@@ -1,4 +1,4 @@
-import { IdolService, GalleryService, SearchService } from "../services/IdolService";
+import { IdolService, GalleryService, SearchService, PageService } from "../services/IdolService";
 import type { Request, Response } from "express";
 
 export class IdolController {
@@ -59,6 +59,21 @@ export class SearchController {
       const searchTerm = req.query.q as string; // use type assertion
       const result = await this.searchService.getSearchResult(searchTerm);
       res.json(result); // pass array into res.json()
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "internal server error" });
+    }
+  };
+}
+
+export class PageController {
+  constructor(private pageService: PageService) {}
+
+  getPages = async (req: Request, res: Response) => {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const idols = await this.pageService.getPages(page);
+      res.json(idols); 
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "internal server error" });
