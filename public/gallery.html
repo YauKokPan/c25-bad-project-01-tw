@@ -31,23 +31,36 @@
       <div class="navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">首頁</a>
+            <a class="nav-link" href="index.html">首頁</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">女優一覽</a>
+            <a class="nav-link" href="#idol-review">女優一覽</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./searchByImage.html">以圖搜尋</a>
+            <a class="nav-link" href="searchByImage.html">以圖搜尋</a>
           </li>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="搜尋女優" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          <li class="nav-item">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">搜尋女優</button>
+          </li>
         </ul>
       </div>
     </nav>
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">搜尋女優</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <form class="d-flex" role="search" action="/search" method="GET" id="search-form">
+          <input class="form-control me-2" type="search" placeholder="搜尋女優" aria-label="Search" name="query" />
+          <button class="btn btn-outline-success" type="submit">
+            Search
+          </button>
+        </form>
+        <div id="search-results"></div>
+      </div>
+    </div>
     <div class="idol-name"></div>
 
     <div class="idol-info"></div>
