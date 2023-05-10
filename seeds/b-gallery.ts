@@ -28,10 +28,9 @@ export async function seed(knex: Knex): Promise<void> {
 
     const insertQueryString = `
       INSERT INTO gallery (idol_name,idol_image,idol_id)
-      VALUES ${data
+      VALUES ${(data as GalleryData[])
         .map(
-          (row: GalleryData) =>
-            `('${row.idol_name}', '${row.idol_image}', '${row.idol_id}')`
+          (row) => `('${row.idol_name}', '${row.idol_image}', '${row.idol_id}')`
         )
         .join(", ")};
     `;

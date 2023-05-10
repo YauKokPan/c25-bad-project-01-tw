@@ -33,9 +33,9 @@ export async function seed(knex: Knex): Promise<void> {
 
     const insertQueryString = `
       INSERT INTO javidols (idol_name, idol_info, profile_pic)
-      VALUES ${data
+      VALUES ${(data as JavIdol[])
         .map(
-          (row: JavIdol) =>
+          (row) =>
             `('${row.idol_name}', '${row.idol_info}', '${row.profile_pic}')`
         )
         .join(", ")};
