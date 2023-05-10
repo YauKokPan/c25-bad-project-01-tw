@@ -1,18 +1,19 @@
 from sanic import Sanic
 from sanic.response import json
 import tensorflow as tf
-import numpy as np
+# import numpy as np
 import cv2
-import dlib
-from PIL import Image
+# import dlib
+# from PIL import Image
 import os
+from face_cropper import crop
 
 classes = ["相澤南","水卜櫻","小倉由菜","瀬名ひかり","森日向子","四宮ありす","月乃露娜","鈴木真夕","稻場流花","河合明日菜","楓可憐","川上奈奈美","望月絢香","宮下玲奈","中山文香"
            ,"庵ひめか","白石茉莉奈","有岡みう","工藤ララ","美波もも","南乃そら","深田詠美","横宮七海"]
 
 app = Sanic("Python-Hosted-Model")
 
-detector = dlib.get_frontal_face_detector()
+
 file_types = ('.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG')
 ai_model = tf.keras.models.load_model('./ai_model/my_model.h5')
 
@@ -26,24 +27,8 @@ def callModel(request):
         file_path = os.path.join(os.getcwd(),'public', 'uploads', uploaded_file)
         print(f"file with path: {file_path}")
 
-        image = cv2.imread(file_path)
-        
+        cropped_img = crop(image_path=file_path, saving_path=None)
 
-        #another method to get the numpyArray of the image
-        # image = cv2.imdecode(np.frombuffer(uploaded_file.body, np.uint8), cv2.IMREAD_COLOR)
-        
-
-        dets = detector(image, 1)
-        open_img = Image.open(file_path)
-
-        # Crop the image as needed
-        for _k, d in enumerate(dets):
-            if d.right()-d.left() < 80 or d.bottom()-d.top() < 80:
-                continue
-                          
-            cropped_img = open_img.crop((d.left(), d.top(), d.right(), d.bottom()))
-            cropped_img.resize((96,96))
-        
         img_ndarray = tf.keras.utils.img_to_array(cropped_img)
         resized_image = cv2.resize(img_ndarray, (96, 96), interpolation=cv2.INTER_AREA)
         resized_image = resized_image.reshape(-1, 96, 96, 3)

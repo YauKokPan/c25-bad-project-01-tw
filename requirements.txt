@@ -18,3 +18,4 @@ Unidecode == 1.3.6
 face-recognition ==  1.3.0
 imutils == 0.5.4
 sanic  == 23.3.0
+face-cropper ==1.0.0
