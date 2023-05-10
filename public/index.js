@@ -31,6 +31,10 @@ const searchResults = document.querySelector("#search-results");
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const query = searchInput.value;
+  if (query.trim().length === 0) {
+    searchResults.innerHTML = "<p>No results found.</p>";
+    return;
+  }
   const response = await fetch("/search?q=" + query, { method: "GET" });
   const data = await response.json();
   if (data.length > 0) {
