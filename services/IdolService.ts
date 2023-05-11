@@ -23,18 +23,6 @@ export class IdolService {
 }
 
 
-export class SearchService {
-  constructor(private knex: Knex) {}
-
-  getSearchResult = async (searchTerm: string) => {
-    const queryResult = await this.knex<Idols>("javidols")
-      .select("*")
-      .where("idol_name", "like", `%${searchTerm}%`);
-
-    return queryResult;
-  };
-}
-
 
 export class PageService {
   constructor(private knex: Knex) {}
