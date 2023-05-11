@@ -6,7 +6,7 @@ let myDropzone = new Dropzone("#myDropzone", {
   maxFiles: 1,
   thumbnailWidth: 350,
   thumbnailHeight: 340,
-  url: "0.0.0.0:8080/postImage",
+  url: "http://localhost:8080/postImage",
   success: function (file, response) {
     updateUI(file, response);
   },
