@@ -52,7 +52,9 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
   const filename = req.file!.filename;
   // console.log("fullpath: ", filename);
   try {
-    const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
+    const resp = await axios(
+      `http://dave-hk.me:8000/postImage?img=${filename}`
+    );
     const result = resp.data;
     console.log(result);
     console.log("you are in nodejs python result: ", result);
@@ -85,15 +87,14 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
 
     res.status(200).json({ msg: "uploaded", data: output });
   } catch (e) {
-
     res.status(405).json({ msg: "upload failed" });
   }
 });
 
 //service & controller
 
-import {IdolController} from "./controllers/IdolController";
-import {IdolService,} from "./services/IdolService";
+import { IdolController } from "./controllers/IdolController";
+import { IdolService } from "./services/IdolService";
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);
@@ -118,15 +119,15 @@ export const pageController = new PageController(pageService);
 
 // Section 2: Route Handlers
 
-import {idolRoutes} from "./routers/idolRoutes";
-import {galleryRoutes} from "./routers/galleryRoutes"
-import {searchRoutes} from "./routers/searchRoutes"
-import {pageRoutes} from "./routers/pageRoutes"
+import { idolRoutes } from "./routers/idolRoutes";
+import { galleryRoutes } from "./routers/galleryRoutes";
+import { searchRoutes } from "./routers/searchRoutes";
+import { pageRoutes } from "./routers/pageRoutes";
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/search", searchRoutes);
-app.use('/page',pageRoutes);
+app.use("/page", pageRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
