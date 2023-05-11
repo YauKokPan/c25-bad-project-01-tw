@@ -7,8 +7,8 @@ interface CodeData {
   idol_name: string;
   idol_code: string;
   idol_id: number;
-  title: Text;
-  release_date:string;
+  title: string;
+  release_date: string;
 }
 
 export async function seed(knex: Knex): Promise<void> {
@@ -28,17 +28,20 @@ export async function seed(knex: Knex): Promise<void> {
       process.exit(1);
     }
 
-    const insertQueryString = `
-      INSERT INTO idolcode (idol_id ,idol_name,idol_code,title,release_date)
-      VALUES ${(data as CodeData[])
-        .map(
-          (row) => `('${row.idol_name}', '${row.idol_code}', '${row.idol_id}', '${row.title}', '${row.release_date}')`
-        )
-        .join(", ")};
-    `;
+    const batchSize = 1000; // Adjust this value based on your performance requirements
 
     await knex.transaction(async (trx) => {
-      await trx.raw(insertQueryString);
+      await trx.batchInsert(
+        "idolcode",
+        data.map((row: CodeData) => ({
+          idol_name: row.idol_name,
+          idol_code: row.idol_code,
+          idol_id: row.idol_id,
+          title: row.title,
+          release_date: row.release_date,
+        })),
+        batchSize
+      );
       console.log("Code data seeded successfully!");
     });
   } catch (error) {
