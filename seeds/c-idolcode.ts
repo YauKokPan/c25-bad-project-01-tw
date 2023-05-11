@@ -33,7 +33,7 @@ export async function seed(knex: Knex): Promise<void> {
     await knex.transaction(async (trx) => {
       await trx.batchInsert(
         "idolcode",
-        data.map((row: CodeData) => ({
+        (data as CodeData[]).map((row: CodeData) => ({
           idol_name: row.idol_name,
           idol_code: row.idol_code,
           idol_id: row.idol_id,
