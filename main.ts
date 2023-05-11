@@ -52,7 +52,7 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
   const filename = req.file!.filename;
   // console.log("fullpath: ", filename);
   try {
-    const resp = await axios(`http://localhost:8000/postImage?img=${filename}`);
+    const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
     const result = resp.data;
     console.log(result);
     console.log("you are in nodejs python result: ", result);
