@@ -10,8 +10,10 @@ interface JavIdol {
 }
 
 export async function seed(knex: Knex): Promise<void> {
+  await knex("idolcode").del();
   await knex("gallery").del();
   await knex("javidols").del();
+  await knex.raw("ALTER SEQUENCE idolcode_id_seq RESTART WITH 1");
   await knex.raw("ALTER SEQUENCE gallery_id_seq RESTART WITH 1");
   await knex.raw("ALTER SEQUENCE javidols_id_seq RESTART WITH 1");
 

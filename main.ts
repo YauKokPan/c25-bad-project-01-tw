@@ -116,17 +116,26 @@ import { PageController } from "./controllers/pageController";
 const pageService = new PageService(knex);
 export const pageController = new PageController(pageService);
 
+import { CodeService } from "./services/codeService";
+import { CodeController } from "./controllers/codeController";
+
+const codeService = new CodeService(knex);
+export const codeController = new CodeController(codeService);
+
 // Section 2: Route Handlers
 
 import {idolRoutes} from "./routers/idolRoutes";
 import {galleryRoutes} from "./routers/galleryRoutes"
 import {searchRoutes} from "./routers/searchRoutes"
 import {pageRoutes} from "./routers/pageRoutes"
+import { codeRoutes } from "./routers/codeRoutes";
+
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/search", searchRoutes);
 app.use('/page',pageRoutes);
+app.use('/code',codeRoutes)
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
