@@ -1,11 +1,9 @@
 import express from "express";
-import type { Request, Response, NextFunction } from "express";
 import path from "path";
 import expressSession from "express-session";
 import dotenv from "dotenv";
 dotenv.config();
 import multer from "multer";
-import fs from "fs";
 import axios from "axios";
 
 import knexConfig from "./knexfile";
@@ -82,31 +80,20 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
           };
 
           output.push(outputObj);
-          // console.log("123", outputObj);
         });
     }
 
     res.status(200).json({ msg: "uploaded", data: output });
   } catch (e) {
-    // console.log(e);
+
     res.status(405).json({ msg: "upload failed" });
   }
 });
 
-// Controllers
-import {
-  IdolController,
-  PageController,
-  // UploadImageController,
-} from "./controllers/IdolController";
+//service & controller
 
-// Services
-import {
-  IdolService,
-  PageService,
-} from "./services/IdolService";
-
-
+import {IdolController} from "./controllers/IdolController";
+import {IdolService,} from "./services/IdolService";
 
 const idolService = new IdolService(knex);
 export const idolController = new IdolController(idolService);
@@ -123,17 +110,18 @@ import { SearchController } from "./controllers/searchController";
 const searchService = new SearchService(knex);
 export const searchController = new SearchController(searchService);
 
+import { PageService } from "./services/pageService";
+import { PageController } from "./controllers/pageController";
+
 const pageService = new PageService(knex);
 export const pageController = new PageController(pageService);
 
 // Section 2: Route Handlers
 
-import { idolRoutes, pageRoutes } from "./routers/idolRoutes";
-
+import {idolRoutes} from "./routers/idolRoutes";
 import {galleryRoutes} from "./routers/galleryRoutes"
 import {searchRoutes} from "./routers/searchRoutes"
-
-
+import {pageRoutes} from "./routers/pageRoutes"
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
