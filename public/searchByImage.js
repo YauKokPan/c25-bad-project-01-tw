@@ -19,7 +19,7 @@ let myDropzone = new Dropzone("#myDropzone", {
 function updateUI(file, response) {
   console.log("upload complete", file, response);
   let htmlStr = "";
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < 10; i++) {
     const elem = response.data[i];
 
     let prob_percentage = elem.prob * 100 + 80;
