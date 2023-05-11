@@ -30,8 +30,8 @@ jobs:
       - run: |
           yarn install 
           yarn knex migrate:latest --env test
- 
- deploy:
+
+  deploy:
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
     needs: testing
@@ -49,6 +49,3 @@ jobs:
           username: ubuntu
           port: 22
           key: ${{secrets.SSH_PRIVATE_KEY}}
-
-
-        
