@@ -3,6 +3,7 @@ window.onload = () => {
   const idolId = params.get("i");
   loadIdols(idolId);
   loadGallery(idolId);
+  loadCode(idolId)
 };
 
 async function loadIdols(id) {
@@ -10,12 +11,17 @@ async function loadIdols(id) {
   const idols = await resp.json();
   console.log("response: ", idols);
   let idolnameStr = ``;
+  let codeTitleStr = ``;
   for (const idol of idols.data) {
     idolnameStr += `
         ${idol.idol_name}
       `;
+      codeTitleStr +=`
+        <h2>${idol.idol_name}參演作品:</h2>
+      `
   }
   document.querySelector(".idol-name").innerHTML = idolnameStr;
+  document.querySelector(".idol-code-title").innerHTML = codeTitleStr;
 
   let idolinfoStr = ``;
   for (const idol of idols.data) {
@@ -169,4 +175,23 @@ searchForm.addEventListener("submit", async (event) => {
       },
     },
   });
+}
+
+
+async function loadCode(id) {
+  const resp = await fetch("/code/" + id);
+  const idols = await resp.json();
+  console.log("response: ", idols);
+  let idolmoviesStr = ``;
+  for (const idol of idols.data) {
+    idolmoviesStr += `
+    <tr>
+    <td><strong>${idol.idol_code}</strong></td>
+    <td>${idol.title}</td>
+    <td>${idol.release_date}</td>
+    </tr>
+      `;
+  }
+  document.querySelector(".movies-list").innerHTML = idolmoviesStr;
+
 }

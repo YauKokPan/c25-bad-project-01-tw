@@ -19,7 +19,7 @@ export class CodeService {
   
     getCodeById = async (id:number) => {
       const queryResult = await this.knex<Code>("idolcode")
-      .select('idolcode.idol_code', 'idolcode.title','idolcode.release_date')
+      .select('idolcode.idol_name','idolcode.idol_code', 'idolcode.title','idolcode.release_date')
       .join('javidols', 'javidols.id', '=', 'idolcode.idol_id')
       .where('javidols.id', id);
   

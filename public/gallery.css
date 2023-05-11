@@ -167,3 +167,30 @@ body {
   display: flex;
   padding: 5px;
 }
+
+table {
+  border:1px solid #b3adad;
+  border-collapse:collapse;
+  padding:5px;
+}
+table th {
+  border:1px solid #b3adad;
+  padding:5px;
+  background: #cccccc;
+  color: #313030;
+}
+table td {
+  border:1px solid #b3adad;
+  text-align:center;
+  padding:5px;
+  background: #cccccc;
+  color: #313030;
+}
+
+#movies td, #movies th{
+  background: #ccc;
+  padding: 2px;
+  border: 1px #fff solid;
+  text-align: left;
+  font-size: 12px;
+}
