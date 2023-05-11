@@ -34,7 +34,7 @@ jobs:
   deploy:
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
-    needs: testing
+    needs: test
     steps:
       - name: ssh to pull latest version
         uses: appleboy/ssh-action@master
