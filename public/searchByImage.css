@@ -71,8 +71,8 @@ div.container-fluid {
 }
 
 div.flex {
-  margin-left: 400px;
-  margin-right: 400px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #f6e1e1;
   border-radius: 10px;
 }
@@ -118,13 +118,11 @@ form .dz-message {
 
 .flex {
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
 .flex-result {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -141,4 +139,7 @@ form .dz-message {
   object-fit: cover;
   width: 150px;
   height: 150px;
+}
+
+@media only screen and (max-width: 768px) {
 }
