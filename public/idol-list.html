@@ -44,6 +44,22 @@
               </ul>
             </div>
           </nav>
+          
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasRightLabel">搜尋女優</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <form class="d-flex" role="search" action="/search" method="GET" id="search-form">
+                <input class="form-control me-2" type="search" placeholder="搜尋女優" aria-label="Search" name="query" />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+              <div id="search-results"></div>
+            </div>
+          </div>
           <h1>女優一覽</h1>
             <div class="idols-list">
 
