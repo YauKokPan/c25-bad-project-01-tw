@@ -71,19 +71,54 @@ searchForm.addEventListener("submit", async (event) => {
 
 async function loadPagination() {
   const paginationDiv = document.querySelector("#pagination-content");
-  let htmlStr = ``;
+  let htmlStr = "";
   let url = new URLSearchParams(window.location.search);
   let currentPage = url.get("page") || 1;
   const resp = await (await fetch("/page/totalpages")).json();
   const totalPages = +resp.data.totalPages;
   console.log("totalPages: ", totalPages);
-  for (let i = 1; i <= totalPages; i++) {
-    htmlStr += `<li class="page-item">
-                  <a class="page-link" href="idol-list.html?page=${i}">${i}</a>
-                </li>`;
+  const visiblePageLinks = 5; // Number of visible page links including ellipsis
+  const halfVisiblePageLinks = Math.floor(visiblePageLinks / 2);
+  let startPage = currentPage - halfVisiblePageLinks;
+  let endPage = currentPage + halfVisiblePageLinks;
+  if (startPage <= 0) {
+    endPage += Math.abs(startPage) + 1;
+    startPage = 1;
   }
-  htmlStr += `<li class="page-item">
-                <a class="page-link" href="idol-list.html?page=${+currentPage + 1}">Next</a>
-              </li>`;
+  if (endPage > totalPages) {
+    startPage -= endPage - totalPages;
+    endPage = totalPages;
+  }
+  if (startPage <= 0) {
+    startPage = 1;
+  }
+  htmlStr += `<li class="page-item ${currentPage <= 1 ? "disabled" : ""}"><a class="page-link" href="idol-list.html?page=${
+    +currentPage - 1
+  }">Previous</a></li>`;
+  if (startPage > 1) {
+    htmlStr += `<li class="page-item"><a class="page-link" href="idol-list.html?page=1">1</a></li>`;
+    if (startPage > 2) {
+      htmlStr += `<li class="page-item ellipsis"><span class="page-link">...</span></li>`;
+    }
+  }
+  for (let i = startPage; i <= endPage; i++) {
+    htmlStr += `<li class="page-item ${
+      i == currentPage ? "active" : ""
+    }"><a class="page-link" href="idol-list.html?page=${i}">${i}</a></li>`;
+  }
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      htmlStr += `<li class="page-item ellipsis"><span class="page-link">...</span></li>`;
+    }
+    htmlStr += `<li class="page-item"><a class="page-link" href="idol-list.html?page=${totalPages}">${totalPages}</a></li>`;
+  }
+  htmlStr += `<li class="page-item ${
+    currentPage >= totalPages ? "disabled" : ""
+  }"><a class="page-link" href="idol-list.html?page=${
+    +currentPage + 1
+  }">Next</a></li>`;
   paginationDiv.innerHTML = htmlStr;
+
+  const paginationUl = document.querySelector(".pagination");
+  paginationUl.classList.add("d-flex");
 }
