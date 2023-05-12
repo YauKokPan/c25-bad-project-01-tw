@@ -89,3 +89,48 @@
     margin: 0 5px;
     color: #000;
 }
+
+.idols-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.idol {
+  padding: 10px;
+  text-align: start; /* center the contents of the .idol element horizontally */
+}
+
+.profile-pic {
+  display: block; /* make the image a block-level element */
+  background-color: #ffffff;
+  padding:10px
+}
+
+.idol-name {
+  text-align: start; /* center the name horizontally */
+  padding-left: 60px;
+  background-color: #ffffff;
+}
+
+.image-scale {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+}
+
+h1{
+  text-align: center;
+  padding: 10px;
+}
+
+.card {
+  padding:10px;
+  margin: 5px;
+}
+
+.card-text{
+  margin-bottom: 0px;
+}
+
+
