@@ -3,4 +3,5 @@ import { pageController } from "../main";
 
 export const pageRoutes = express.Router();
 
-pageRoutes.get("/",pageController.getPages);
+pageRoutes.get("/totalpages", pageController.getTotalPages);
+pageRoutes.get("/", pageController.getInfoByPage);
