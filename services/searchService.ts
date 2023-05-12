@@ -13,7 +13,7 @@ export class SearchService {
       )
       .distinct()
       .where("javidols.idol_name", "like", `%${searchTerm}%`)
-      .orWhere("idolcode.idol_code", "like", `%${searchTerm}%`)
+      .orWhere("idolcode.idol_code", "=", `${searchTerm}`)
       .groupBy("javidols.idol_name", "javidols.id", "javidols.created_at")
       .orderBy("javidols.id", "desc");
 
