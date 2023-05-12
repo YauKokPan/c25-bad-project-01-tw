@@ -84,8 +84,8 @@ div.flex {
   text-align: center;
   font-size: 10px;
   border-radius: 20px;
-  width: 40vw;
-  height: 58vh;
+  width: 50vw;
+  height: 50vh;
   cursor: pointer;
 }
 
@@ -102,25 +102,14 @@ form .dz-message {
 }
 
 .dropzone .dz-preview .dz-image {
-  width: 40vw;
-  height: 40vh;
+  width: 30vw;
+  height: 30vh;
   text-align: center;
 }
 
 .dropzone .dz-message a {
   font-size: 20px; /* Change this value to your desired font size */
 }
-
-/* .dz-preview {
-  position: relative;
-}
-
-.dz-preview .dz-success-mark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
 
 .dz-success-mark svg path {
   fill: #535353; /*Replace with your desired color*/

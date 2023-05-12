@@ -1,11 +1,11 @@
-let myDropzone = new Dropzone("#myDropzone", {
+Dropzone.options.myDropzone = {
   paramName: "file", // The name that will be used to transfer the file
-  acceptedFiles: "image/jpeg,image/jpg",
+  acceptedFiles: "image/jpeg,image/jpg,image/png",
   autoProcessQueue: true,
   addRemoveLinks: true,
   maxFiles: 1,
-  thumbnailWidth: 350,
-  thumbnailHeight: 340,
+  thumbnailWidth: 340,
+  thumbnailHeight: 350,
   url: "/postImage",
   removedfile: function () {
     window.location.href = "./searchByImage.html";
@@ -14,10 +14,7 @@ let myDropzone = new Dropzone("#myDropzone", {
     // $(".dz-error-mark").css("display", "none");
     updateUI(file, response);
   },
-  // error: function () {
-  //   $(".dz-success-mark").css("display", "none");
-  // },
-});
+};
 
 function updateUI(file, response) {
   // console.log("upload complete", file, response);
