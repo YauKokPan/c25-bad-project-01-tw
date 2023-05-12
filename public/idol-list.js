@@ -9,13 +9,15 @@ async function loadIdols() {
   const resp = await fetch("/page?page=" + currentPage);
   const idols = await resp.json();
   let htmlStr = ``;
-    for (const idol of idols.data) {
-      // Split the idol_info text into separate lines
-      const lines = idol.idol_info.split("\n");
-      // Join the lines into a single HTML string
-      const infoHtml = lines.map(line => `<p class="card-text">${line}</p>`).join("");
-  
-      htmlStr += `
+  for (const idol of idols.data) {
+    // Split the idol_info text into separate lines
+    const lines = idol.idol_info.split("\n");
+    // Join the lines into a single HTML string
+    const infoHtml = lines
+      .map((line) => `<p class="card-text">${line}</p>`)
+      .join("");
+
+    htmlStr += `
         <div class="col-6">
           <div class="card mb-3">
             <div class="row g-0">
@@ -26,7 +28,7 @@ async function loadIdols() {
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <a href="./gallery.html?i=${idol.id}"><h5 class="card-title">${idol.idol_name}</h5></a>
+                  <a href="./gallery.html?i=${idol.id}"><h5 class="card-title"><span class="hyperlink">${idol.idol_name}</span></h5></a>
                   ${infoHtml}
                 </div>
               </div>
@@ -34,11 +36,11 @@ async function loadIdols() {
           </div>
         </div>
       `;
-    }
-    document.querySelector(".idols-list").innerHTML = htmlStr;
   }
+  document.querySelector(".idols-list").innerHTML = htmlStr;
+}
 
-  const searchForm = document.querySelector("#search-form");
+const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("[name='query']");
 const searchResults = document.querySelector("#search-results");
 
@@ -92,7 +94,9 @@ async function loadPagination() {
   if (startPage <= 0) {
     startPage = 1;
   }
-  htmlStr += `<li class="page-item ${currentPage <= 1 ? "disabled" : ""}"><a class="page-link" href="idol-list.html?page=${
+  htmlStr += `<li class="page-item ${
+    currentPage <= 1 ? "disabled" : ""
+  }"><a class="page-link" href="idol-list.html?page=${
     +currentPage - 1
   }">Previous</a></li>`;
   if (startPage > 1) {
