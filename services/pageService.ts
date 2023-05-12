@@ -16,7 +16,7 @@ export class PageService {
   };
 
   getTotalPages = async () => {
-    const numberOfItemsPerPage = 8;
+    const numberOfItemsPerPage = 10;
     const totalItems: { count: number } = await this.knex
       .count("id")
       .from("javidols")
@@ -26,10 +26,10 @@ export class PageService {
   };
 
   getInfoByPage = async (page: number) => {
-    const itemPerPage = 8;
+    const itemPerPage = 10;
     const result = this.knex("javidols")
       .select("*")
-      .limit(8)
+      .limit(10)
       .offset((page - 1) * itemPerPage);
     return result;
   };

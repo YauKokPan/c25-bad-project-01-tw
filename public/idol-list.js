@@ -1,12 +1,15 @@
 window.onload = () => {
   loadIdols();
+  loadPagination();
 };
 
 async function loadIdols() {
-    const resp = await fetch("/idols");
-    const idols = await resp.json();
-    let htmlStr = ``;
-    for (const idol of idols) {
+  let url = new URLSearchParams(window.location.search);
+  let currentPage = url.get("page") || 1;
+  const resp = await fetch("/page?page=" + currentPage);
+  const idols = await resp.json();
+  let htmlStr = ``;
+    for (const idol of idols.data) {
       // Split the idol_info text into separate lines
       const lines = idol.idol_info.split("\n");
       // Join the lines into a single HTML string
@@ -66,25 +69,21 @@ searchForm.addEventListener("submit", async (event) => {
   }
 });
 
-const pagination = document.querySelector(".pagination");
-const pages = pagination.querySelectorAll(".page");
-const prev = pagination.querySelector(".prev");
-const next = pagination.querySelector(".next");
-const prevPage = () => {
-  const active = pagination.querySelector(".active");
-  const prev = active.previousElementSibling;
-  if (prev.classList.contains("page")) {
-    active.classList.remove("active");
-    prev.classList.add("active");
+async function loadPagination() {
+  const paginationDiv = document.querySelector("#pagination-content");
+  let htmlStr = ``;
+  let url = new URLSearchParams(window.location.search);
+  let currentPage = url.get("page") || 1;
+  const resp = await (await fetch("/page/totalpages")).json();
+  const totalPages = +resp.data.totalPages;
+  console.log("totalPages: ", totalPages);
+  for (let i = 1; i <= totalPages; i++) {
+    htmlStr += `<li class="page-item">
+                  <a class="page-link" href="idol-list.html?page=${i}">${i}</a>
+                </li>`;
   }
-};
-const nextPage = () => {
-  const active = pagination.querySelector(".active");
-  const next = active.nextElementSibling;
-  if (next.classList.contains("page")) {
-    active.classList.remove("active");
-    next.classList.add("active");
-  }
-};
-prev.addEventListener("click", prevPage);
-next.addEventListener("click", nextPage);
+  htmlStr += `<li class="page-item">
+                <a class="page-link" href="idol-list.html?page=${+currentPage + 1}">Next</a>
+              </li>`;
+  paginationDiv.innerHTML = htmlStr;
+}
