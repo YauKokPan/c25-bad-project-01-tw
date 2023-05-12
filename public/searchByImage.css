@@ -61,9 +61,6 @@ h2 {
 }
 
 .text-center {
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   background-color: #ecb8b8;
   margin: 0;
   padding: 0;
@@ -104,12 +101,6 @@ form .dz-message {
   font-weight: 200;
 }
 
-/* #myDropzone > .dz-preview {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
-
 .dropzone .dz-preview .dz-image {
   width: 40vw;
   height: 40vh;
@@ -117,11 +108,22 @@ form .dz-message {
 }
 
 .dropzone .dz-message a {
-  font-size: 6px; /* Change this value to your desired font size */
+  font-size: 20px; /* Change this value to your desired font size */
 }
 
+/* .dz-preview {
+  position: relative;
+}
+
+.dz-preview .dz-success-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
 .dz-success-mark svg path {
-  fill: #535353; /* Replace with your desired color */
+  fill: #535353; /*Replace with your desired color*/
   font-size: 10%;
 }
 
