@@ -104,7 +104,8 @@ form .dz-message {
 .dropzone .dz-preview .dz-image {
   width: 30vw;
   height: 30vh;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .dropzone .dz-message a {
