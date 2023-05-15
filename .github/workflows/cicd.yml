@@ -45,7 +45,7 @@ jobs:
             git pull origin production
             yarn install
             yarn knex migrate:latest --env production
-            pm2 restart 'yarn start'
+            pm2 restart 'javidols'
           host: 54.163.111.244
           username: ubuntu
           port: 22
