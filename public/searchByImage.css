@@ -133,7 +133,7 @@ form .dz-message {
 }
 
 .dropbox-padding {
-  padding-top: 2%;
+  padding-top: 0.5%;
 }
 
 #upload-result > div > div > a > img {
@@ -143,4 +143,8 @@ form .dz-message {
 }
 
 @media only screen and (max-width: 768px) {
+}
+
+h1 {
+  padding-top: 2.5vh;
 }
