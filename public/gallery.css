@@ -105,7 +105,7 @@ body {
 
 /* Align thumbnails on right side if not draggable */
 .f-thumbs__viewport:not(.is-draggable) .f-thumbs__track {
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .f-thumbs__slide__img {
@@ -169,25 +169,26 @@ body {
 }
 
 table {
-  border:1px solid #b3adad;
-  border-collapse:collapse;
-  padding:5px;
+  border: 1px solid #b3adad;
+  border-collapse: collapse;
+  padding: 5px;
 }
 table th {
-  border:1px solid #b3adad;
-  padding:5px;
+  border: 1px solid #b3adad;
+  padding: 5px;
   background: #cccccc;
   color: #313030;
 }
 table td {
-  border:1px solid #b3adad;
-  text-align:center;
-  padding:5px;
+  border: 1px solid #b3adad;
+  text-align: center;
+  padding: 5px;
   background: #cccccc;
   color: #313030;
 }
 
-#movies td, #movies th{
+#movies td,
+#movies th {
   background: #ccc;
   padding: 2px;
   border: 1px #fff solid;
@@ -195,7 +196,6 @@ table td {
   font-size: 12px;
 }
 
-#movies{
+#movies {
   width: 100%;
 }
-
