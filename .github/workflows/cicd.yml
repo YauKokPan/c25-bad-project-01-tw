@@ -19,7 +19,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_HOST: ${.env} 
+          POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
           POSTGRES_DB: ${{env.POSTGRES_DB}}
           POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
         ports:
@@ -29,6 +29,7 @@ jobs:
       - run: |
           yarn install 
           yarn knex migrate:latest --env test
+          yarn jest
  
  deploy:
     runs-on: ubuntu-latest
@@ -47,6 +48,3 @@ jobs:
           username: ubuntu
           port: 22
           key: ${{secrets.SSH_PRIVATE_KEY}}
-
-
-        
