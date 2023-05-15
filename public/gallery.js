@@ -3,7 +3,7 @@ window.onload = () => {
   const idolId = params.get("i");
   loadIdols(idolId);
   loadGallery(idolId);
-  loadCode(idolId)
+  loadCode(idolId);
 };
 
 async function loadIdols(id) {
@@ -16,9 +16,9 @@ async function loadIdols(id) {
     idolnameStr += `
         ${idol.idol_name}
       `;
-      codeTitleStr +=`
+    codeTitleStr += `
         <h2>${idol.idol_name}參演作品:</h2>
-      `
+      `;
   }
   document.querySelector(".idol-name").innerHTML = idolnameStr;
   document.querySelector(".idol-code-title").innerHTML = codeTitleStr;
@@ -112,35 +112,35 @@ async function loadGallery(id) {
   });
 
   const searchForm = document.querySelector("#search-form");
-const searchInput = document.querySelector("[name='query']");
-const searchResults = document.querySelector("#search-results");
+  const searchInput = document.querySelector("[name='query']");
+  const searchResults = document.querySelector("#search-results");
 
-searchForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const query = searchInput.value;
-  if (query.trim().length === 0) {
-    searchResults.innerHTML = "<p>No results found.</p>";
-    return;
-  }
-  const response = await fetch("/search?q=" + query, { method: "GET" });
-  const data = await response.json();
-  if (data.length > 0) {
-    searchResults.innerHTML = "";
-    data.forEach((result) => {
-      const resultItem = document.createElement("div");
-      resultItem.innerHTML = `
+  searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = searchInput.value;
+    if (query.trim().length === 0) {
+      searchResults.innerHTML = "<p>No results found.</p>";
+      return;
+    }
+    const response = await fetch("/search?q=" + query, { method: "GET" });
+    const data = await response.json();
+    if (data.length > 0) {
+      searchResults.innerHTML = "";
+      data.forEach((result) => {
+        const resultItem = document.createElement("div");
+        resultItem.innerHTML = `
         <h3>${result.idol_name}</h3>
         <a href="./gallery.html?i=${result.id}">
           <img src="./pictures/javidols-profile-pic/${result.profile_pic}" alt="${result.idol_name}" height="125px">
         </a>
         <p>${result.idol_info}</p>
       `;
-      searchResults.appendChild(resultItem);
-    });
-  } else {
-    searchResults.innerHTML = "<p>No results found.</p>";
-  }
-});
+        searchResults.appendChild(resultItem);
+      });
+    } else {
+      searchResults.innerHTML = "<p>No results found.</p>";
+    }
+  });
 
   // fancybox
   Fancybox.bind('[data-fancybox="gallery"]', {
@@ -155,20 +155,29 @@ searchForm.addEventListener("submit", async (event) => {
 
     Images: {
       // Disable animation from/to thumbnail on start/close
-      zoom: false,
+      zoom: true,
     },
 
     Toolbar: {
       display: {
-        left: [],
-        middle: [],
-        right: ["close"],
+        left: ["infobar"],
+        middle: [
+          "zoomIn",
+          "zoomOut",
+          "toggle1to1",
+          "rotateCCW",
+          "rotateCW",
+          "flipX",
+          "flipY",
+        ],
+        right: ["slideshow", "thumbs", "close"],
       },
     },
 
     Thumbs: {
-      type: "classic",
+      type: "modern",
       Carousel: {
+        Navigation: false,
         center: function () {
           return this.contentDim > this.viewportDim;
         },
@@ -176,7 +185,6 @@ searchForm.addEventListener("submit", async (event) => {
     },
   });
 }
-
 
 async function loadCode(id) {
   const resp = await fetch("/code/" + id);
@@ -193,5 +201,4 @@ async function loadCode(id) {
       `;
   }
   document.querySelector(".movies-list").innerHTML = idolmoviesStr;
-
 }

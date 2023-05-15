@@ -99,3 +99,21 @@ h1 {
   width: 150px;
   height: 150px;
 }
+
+.hyperlink {
+  text-decoration: none;
+  transition: background-size 0.2s ease;
+  background: linear-gradient(transparent 60%, #f8eab0 0) center center/0% 75%
+    no-repeat;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 900;
+  color: rgba(95, 14, 53, 0.795);
+  letter-spacing: 0.08rem;
+  &:hover {
+    background-size: 100% 100%;
+  }
+  &:active {
+    background-size: 80% 100%;
+  }
+}

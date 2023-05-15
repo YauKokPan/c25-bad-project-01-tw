@@ -16,7 +16,7 @@ async function loadIdols() {
             
             </div>
             <div class="idol-name">
-              <a href="./gallery.html?i=${idol.id}">${idol.idol_name}</a>
+              <a class="hyperlink" href="./gallery.html?i=${idol.id}">${idol.idol_name}</a>
             </div>
           </div>
       `;

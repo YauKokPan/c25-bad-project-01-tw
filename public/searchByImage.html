@@ -23,18 +23,72 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
   </head>
   <body>
-    <h2>Search by image</h2>
+    <div class="container-fluid">
+      <div class="row header" style="background-color: #ecb8b8" ;>
+        <div class="col-md-6 logo">
+          <a href="./index.html">
+            <img src="./pictures/javlogo.png" />
+          </a>
+        </div>
+        <div class="col-md-6 social-media">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-dribbble"></i>
+          <i class="fa-brands fa-soundcloud"></i>
+        </div>
+      </div>
+
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="navbar-collapse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">首頁</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./idol-list.html">女優簡介</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="searchByImage.html">以圖搜尋</a>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">搜尋女優</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasRightLabel">搜尋女優</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <form class="d-flex" role="search" action="/search" method="GET" id="search-form">
+            <input class="form-control me-2" type="search" placeholder="搜尋女優" aria-label="Search" name="query" />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          <div id="search-results"></div>
+        </div>
+      </div>
 
     <div class="text-center">
+      <h1>以圖搜尋</h1>
       <div id="uploads" class="dropbox-padding container-fluid">
         <div class="flex">
-          <form id="myDropzone">
+          <form id="myDropzone" class="dropzone" action="/postImage" method="post" enctype="multipart/form-data">
             <div class="dz-message" data-dz-message>
               <span>將文件拖到此處 或 按此上傳</span>
             </div>
-            <!-- <button id="submit" type="submit" name="image">submit</button> -->
+           
           </form>
         </div>
         <hr size="3" noshade color="#F00000" />
@@ -44,10 +98,6 @@
 
     <script src="searchByImage.js"></script>
     <!-- bootstrap JS-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

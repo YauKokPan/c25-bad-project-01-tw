@@ -1,0 +1,153 @@
+.container-fluid {
+  padding: 0px 40px;
+}
+
+.header {
+  padding: 20px;
+}
+
+.social-media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.social-media > i {
+  color: #fcfbf9;
+  background: #161616;
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50px;
+  opacity: 0.8;
+  margin: 0px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item > a:hover {
+  background: #353535;
+  color: #fff;
+  box-shadow: inset 0 0 15px #000;
+}
+
+.navbar {
+  padding-left: 20px;
+  background-color: white;
+  border-radius: 7px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+body {
+  background-color: #ecb8b8;
+}
+
+.idols-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.idol {
+  padding: 10px;
+  text-align: start; /* center the contents of the .idol element horizontally */
+}
+
+.profile-pic {
+  display: block; /* make the image a block-level element */
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.idol-name {
+  text-align: start; /* center the name horizontally */
+  padding-left: 60px;
+  background-color: #ffffff;
+}
+
+.image-scale {
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+}
+
+h1 {
+  text-align: center;
+  padding: 10px;
+}
+
+.card {
+  padding: 10px;
+  margin: 5px;
+}
+
+.card-text {
+  margin-bottom: 0px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination li {
+  list-style: none;
+  margin: 0 5px;
+}
+
+.pagination li a,
+.pagination li span {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.pagination li.active a,
+.pagination li.active span {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination li.disabled a,
+.pagination li.disabled span {
+  pointer-events: none;
+  opacity: 0.5;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.pagination li.ellipsis {
+  pointer-events: none;
+  opacity: 0.5;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+/* remove bootstrap underline */
+a:link {
+  text-decoration: none;
+}
+
+.hyperlink {
+  transition: background-size 0.2s ease;
+  background: linear-gradient(transparent 60%, #f8eab0 0) center center/0% 75%
+    no-repeat;
+  cursor: pointer;
+  font-size: 100%;
+  font-weight: 900;
+  color: rgba(95, 14, 53, 0.795);
+  &:hover {
+    background-size: 100% 100%;
+  }
+  &:active {
+    background-size: 80% 100%;
+  }
+}
