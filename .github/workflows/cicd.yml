@@ -31,8 +31,8 @@ jobs:
           yarn install 
           yarn knex migrate:latest --env test
           yarn jest
- 
- deploy:
+
+  deploy:
     if: github.ref_name == 'production'
     runs-on: ubuntu-latest
     needs: test
