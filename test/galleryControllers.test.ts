@@ -4,8 +4,8 @@
 import { describe } from "node:test";
 import { GalleryService } from "../services/galleryService";
 import type { Request, Response } from "express";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 import type { Knex } from "knex";
 import { GalleryController } from "../controllers/galleryController";
