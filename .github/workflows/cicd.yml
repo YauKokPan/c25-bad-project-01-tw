@@ -19,9 +19,10 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_HOST: ${{ env.POSTGRES_HOST }}
+          POSTGRES_HOST: ${{env.POSTGRES_HOST}}
           POSTGRES_DB: ${{env.POSTGRES_DB}}
           POSTGRES_PASSWORD: ${{env.POSTGRES_PASSWORD}}
+          POSTGRES_USER: ${{env.POSTGRES_USER}}
         ports:
           - 5432:5432
     steps:
@@ -32,8 +33,9 @@ jobs:
           yarn jest
  
  deploy:
+    if: github.ref_name == 'production'
     runs-on: ubuntu-latest
-    needs: testing
+    needs: test
     steps:
       - name: ssh to pull latest version
         uses: appleboy/ssh-action@master
