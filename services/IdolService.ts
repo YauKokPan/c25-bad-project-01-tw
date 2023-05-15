@@ -2,6 +2,7 @@ import { Idols } from "../model";
 import type { Knex } from "knex";
 
 export class IdolService {
+  static getAllIdols: any;
   constructor(private knex: Knex) {}
 
   getAllIdols = async () => {
@@ -15,13 +16,9 @@ export class IdolService {
   getIdolsById = async (id: number) => {
     const result = await this.knex<Idols>("javidols")
       .select("*")
-      .where("javidols.id", id)
-      // .join("gallery", "gallery.idol_id", "javidols.id");
+      .where("javidols.id", id);
+    // .join("gallery", "gallery.idol_id", "javidols.id");
     console.log("service getIdolsbyid: ", result);
     return result;
   };
 }
-
-
-
-
