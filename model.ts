@@ -17,6 +17,6 @@ export interface Code {
   idol_id: number;
   idol_name: string;
   idol_code: string;
-  title:Text;
-  release_date:string;
+  title: string;
+  release_date: string;
 }
