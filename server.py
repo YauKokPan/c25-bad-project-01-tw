@@ -24,7 +24,7 @@ app = Sanic("Python-Hosted-Model")
 
 
 file_types = ('.jpg', '.JPG', '.jpeg', '.JPEG', '.png', '.PNG')
-ai_model = tf.keras.models.load_model('./ai_model/my_model.h5')
+ai_model = tf.keras.models.load_model('ai_model/my_model.h5')
 
 
 def get_top_k_predictions(predict, k=10):
