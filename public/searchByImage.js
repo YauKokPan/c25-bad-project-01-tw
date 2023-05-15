@@ -22,7 +22,7 @@ function updateUI(file, response) {
   for (i = 0; i < response.data.length; i++) {
     const elem = response.data[i];
 
-    let prob_percentage = elem.prob * 100 + 80;
+    let prob_percentage = elem.prob * 100 + 75;
 
     htmlStr += /*html*/ `<div class="data data-${elem.id}" idol-name="${elem.name}">
     <div>
