@@ -4,8 +4,6 @@
 import { describe } from "node:test";
 import { CodeService } from "../services/codeService";
 import type { Request, Response } from "express";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 import type { Knex } from "knex";
 import { CodeController } from "../controllers/codeController";

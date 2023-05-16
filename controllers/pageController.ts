@@ -20,7 +20,6 @@ export class PageController {
       const totalPages = await this.pageService.getTotalPages();
       res.status(200).json({ msg: "ok", data: { totalPages } });
     } catch (e) {
-      console.log(e);
       res.status(500).json({ msg: "internal server error." });
     }
     return 10;
@@ -32,11 +31,9 @@ export class PageController {
       const result = await this.pageService.getInfoByPage(Number(page));
       res.status(200).json({ msg: "ok", data: result });
     } catch (e) {
-      console.log(e);
       res.status(402).json({
         msg: "invalid input",
       });
     }
   };
 }
-  

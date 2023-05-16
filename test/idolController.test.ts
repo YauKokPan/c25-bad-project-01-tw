@@ -4,8 +4,6 @@
 import { describe } from "node:test";
 import { IdolService } from "../services/IdolService";
 import type { Request, Response } from "express";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 import type { Knex } from "knex";
 import { IdolController } from "../controllers/IdolController";

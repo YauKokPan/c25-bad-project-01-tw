@@ -4,8 +4,6 @@
 import { describe } from "node:test";
 import { SearchService } from "../services/searchService";
 import type { Request, Response } from "express";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 import type { Knex } from "knex";
 import { SearchController } from "../controllers/searchController";

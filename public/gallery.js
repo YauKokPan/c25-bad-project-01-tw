@@ -9,7 +9,6 @@ window.onload = () => {
 async function loadIdols(id) {
   const resp = await fetch("/idols/" + id);
   const idols = await resp.json();
-  console.log("response: ", idols);
   let idolnameStr = ``;
   let codeTitleStr = ``;
   for (const idol of idols.data) {
@@ -57,7 +56,6 @@ async function loadIdols(id) {
 async function loadGallery(id) {
   const resp = await fetch("/gallery/" + id);
   const idols = await resp.json();
-  console.log("response: ", idols);
   let idolgalleryStr = ``;
   for (const idol of idols.data) {
     idolgalleryStr += /*html*/ `
@@ -92,7 +90,6 @@ async function loadGallery(id) {
   }
 
   $(document).ready(function () {
-    console.log("Document ready!");
     updateGallery();
 
     $("#show-more-btn").click(function () {
@@ -189,7 +186,6 @@ async function loadGallery(id) {
 async function loadCode(id) {
   const resp = await fetch("/code/" + id);
   const idols = await resp.json();
-  console.log("response: ", idols);
   let idolmoviesStr = ``;
   for (const idol of idols.data) {
     idolmoviesStr += `

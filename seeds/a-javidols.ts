@@ -45,7 +45,6 @@ export async function seed(knex: Knex): Promise<void> {
 
     await knex.transaction(async (trx) => {
       await trx.raw(insertQueryString);
-      console.log("Idols data seeded successfully!");
     });
   } catch (error) {
     console.error(error);

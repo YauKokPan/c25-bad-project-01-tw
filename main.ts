@@ -50,12 +50,9 @@ const upload = multer({
 // 處理圖片提交事件
 app.post("/postImage", upload.single("file"), async (req, res) => {
   const filename = req.file!.filename;
-  // console.log("fullpath: ", filename);
   try {
     const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
     const result = resp.data;
-    console.log(result);
-    console.log("you are in nodejs python result: ", result);
     const output:
       | {
           name: string;
@@ -65,7 +62,6 @@ app.post("/postImage", upload.single("file"), async (req, res) => {
         }[]
       | null = [];
     for (let elem of result.results) {
-      console.log("elem", elem);
       const name = elem.split(":")[0];
       const prob = elem.split(" ").pop();
       await knex("javidols")

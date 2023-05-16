@@ -42,7 +42,6 @@ export async function seed(knex: Knex): Promise<void> {
         })),
         batchSize
       );
-      console.log("Code data seeded successfully!");
     });
   } catch (error) {
     console.error(error);

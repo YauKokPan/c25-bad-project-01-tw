@@ -4,8 +4,6 @@
 import { describe } from "node:test";
 import { PageService } from "../services/pageService";
 import type { Request, Response } from "express";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 import type { Knex } from "knex";
 import { PageController } from "../controllers/pageController";

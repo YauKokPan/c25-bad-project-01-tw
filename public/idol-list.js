@@ -78,7 +78,6 @@ async function loadPagination() {
   let currentPage = url.get("page") || 1;
   const resp = await (await fetch("/page/totalpages")).json();
   const totalPages = +resp.data.totalPages;
-  console.log("totalPages: ", totalPages);
   const visiblePageLinks = 5; // Number of visible page links including ellipsis
   const halfVisiblePageLinks = Math.floor(visiblePageLinks / 2);
   let startPage = currentPage - halfVisiblePageLinks;
