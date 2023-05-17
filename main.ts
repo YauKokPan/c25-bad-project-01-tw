@@ -44,46 +44,46 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-const upload = multer({
+export const upload = multer({
   storage: storage,
 });
 // 處理圖片提交事件
-app.post("/postImage", upload.single("file"), async (req, res) => {
-  const filename = req.file!.filename;
-  try {
-    const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
-    const result = resp.data;
-    const output:
-      | {
-          name: string;
-          prob: number;
-          id: number;
-          img: string;
-        }[]
-      | null = [];
-    for (let elem of result.results) {
-      const name = elem.split(":")[0];
-      const prob = elem.split(" ").pop();
-      await knex("javidols")
-        .select("*")
-        .where("idol_name", name)
-        .then((obj) => {
-          const outputObj = {
-            name,
-            prob,
-            id: obj[0].id,
-            img: obj[0].profile_pic,
-          };
+// app.post("/postImage", upload.single("file"), async (req, res) => {
+//   const filename = req.file!.filename;
+//   try {
+//     const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
+//     const result = resp.data;
+//     const output:
+//       | {
+//           name: string;
+//           prob: number;
+//           id: number;
+//           img: string;
+//         }[]
+//       | null = [];
+//     for (let elem of result.results) {
+//       const name = elem.split(":")[0];
+//       const prob = elem.split(" ").pop();
+//       await knex("javidols")
+//         .select("*")
+//         .where("idol_name", name)
+//         .then((obj) => {
+//           const outputObj = {
+//             name,
+//             prob,
+//             id: obj[0].id,
+//             img: obj[0].profile_pic,
+//           };
 
-          output.push(outputObj);
-        });
-    }
+//           output.push(outputObj);
+//         });
+//     }
 
-    res.status(200).json({ msg: "uploaded", data: output });
-  } catch (e) {
-    res.status(405).json({ msg: "upload failed" });
-  }
-});
+//     res.status(200).json({ msg: "uploaded", data: output });
+//   } catch (e) {
+//     res.status(405).json({ msg: "upload failed" });
+//   }
+// });
 
 //service & controller
 
@@ -117,6 +117,12 @@ import { CodeController } from "./controllers/codeController";
 const codeService = new CodeService(knex);
 export const codeController = new CodeController(codeService);
 
+import { PostImageService } from "./services/postImageService";
+import { PostImageController } from "./controllers/postImageController";
+
+const postImageService = new PostImageService(knex);
+export const postImageController = new PostImageController(postImageService);
+
 // Section 2: Route Handlers
 
 import { idolRoutes } from "./routers/idolRoutes";
@@ -124,12 +130,14 @@ import { galleryRoutes } from "./routers/galleryRoutes";
 import { searchRoutes } from "./routers/searchRoutes";
 import { pageRoutes } from "./routers/pageRoutes";
 import { codeRoutes } from "./routers/codeRoutes";
+import { postImageRoutes } from "./routers/postImageRoutes";
 
 app.use("/idols", idolRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/search", searchRoutes);
 app.use("/page", pageRoutes);
 app.use("/code", codeRoutes);
+app.use("/postImage", postImageRoutes);
 
 // Section 3: Serve
 app.use(express.static(path.join(__dirname, "public")));
