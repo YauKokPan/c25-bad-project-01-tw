@@ -1,5 +1,42 @@
 window.onload = () => {
   loadIdols();
+
+  // sweetalert2
+  // Display the SweetAlert2 popup box
+  function showPopup() {
+    Swal.fire({
+      title: "你是否年滿18歲？",
+      icon: "question",
+      confirmButtonText: "是",
+      cancelButtonText: "否",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If visitor confirms they are over 18, set a cookie to remember their choice
+        document.cookie = "over_18=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      } else {
+        // If visitor cancels, redirect them to a different website
+        window.location.href = "https://www.google.com/";
+      }
+    });
+  }
+
+  // Check if the visitor has already confirmed they are over 18
+  function hasConfirmed() {
+    let cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+      if (cookie.indexOf("over_18=") == 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Display the popup box if the visitor has not yet confirmed they are over 18
+  if (!hasConfirmed()) {
+    showPopup();
+  }
 };
 
 async function loadIdols() {
