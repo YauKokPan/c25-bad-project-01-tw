@@ -1,13 +1,8 @@
 from sanic import Sanic
 from sanic.response import json
 import tensorflow as tf
-import numpy as np
-# import cv2
-# import dlib
-# from PIL import Image
 import os
-# from face_cropper import crop
-# from matplotlib import pyplot as plt
+
 
 classes = ["横宮七海","三上悠亞","松本いちか","東條なつ","白桃はな","河北彩花","楪カレン","木下ひまり","篠田優","小花のん",
 "新井リマ","沙月恵奈","彌生美月","涼森玲夢","櫻空桃","有栖花あか","石川澪","桃園怜奈","伊藤舞雪","田中ねね",
