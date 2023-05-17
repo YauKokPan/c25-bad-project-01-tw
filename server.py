@@ -33,15 +33,10 @@ def get_top_k_predictions(predict, k=10):
 @app.get("/postImage")
 def callModel(request):
     try:
-         # Get the uploaded image from the request
-        # uploaded_file = request.files.get('image')
-        # filename = uploaded_file.name
         uploaded_file = request.args.get('img')
         file_path = os.path.join(os.getcwd(),'public', 'uploads', uploaded_file)
         print(f"file with path: {file_path}")
 
-        # cropped_img = crop(image_path=file_path, saving_path=None)
-       
         img = tf.keras.utils.load_img(file_path, target_size=(96, 96))
 
         img_array = tf.keras.preprocessing.image.img_to_array(img)

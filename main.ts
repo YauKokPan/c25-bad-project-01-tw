@@ -4,7 +4,6 @@ import expressSession from "express-session";
 import dotenv from "dotenv";
 dotenv.config();
 import multer from "multer";
-import axios from "axios";
 
 import knexConfig from "./knexfile";
 import Knex from "knex";
@@ -34,6 +33,7 @@ app.use(
   })
 );
 
+// multer for image upload
 const uploadPath = path.join(__dirname, "public", "uploads");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -47,43 +47,6 @@ const storage = multer.diskStorage({
 export const upload = multer({
   storage: storage,
 });
-// 處理圖片提交事件
-// app.post("/postImage", upload.single("file"), async (req, res) => {
-//   const filename = req.file!.filename;
-//   try {
-//     const resp = await axios(`http://127.0.0.1:8000/postImage?img=${filename}`);
-//     const result = resp.data;
-//     const output:
-//       | {
-//           name: string;
-//           prob: number;
-//           id: number;
-//           img: string;
-//         }[]
-//       | null = [];
-//     for (let elem of result.results) {
-//       const name = elem.split(":")[0];
-//       const prob = elem.split(" ").pop();
-//       await knex("javidols")
-//         .select("*")
-//         .where("idol_name", name)
-//         .then((obj) => {
-//           const outputObj = {
-//             name,
-//             prob,
-//             id: obj[0].id,
-//             img: obj[0].profile_pic,
-//           };
-
-//           output.push(outputObj);
-//         });
-//     }
-
-//     res.status(200).json({ msg: "uploaded", data: output });
-//   } catch (e) {
-//     res.status(405).json({ msg: "upload failed" });
-//   }
-// });
 
 //service & controller
 
