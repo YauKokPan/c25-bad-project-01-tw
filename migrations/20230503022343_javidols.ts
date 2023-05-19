@@ -2,7 +2,7 @@ import { Knex } from "knex";
 
 const idolTable = "javidols";
 const galleryTable = "gallery";
-const codeTable = "idolcode"
+const codeTable = "idolcode";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(idolTable, (table) => {
@@ -32,9 +32,6 @@ export async function up(knex: Knex): Promise<void> {
     table.timestamps(false, true); // created_at, updated_at
   });
 }
-
-
-
 
 export async function down(knex: Knex): Promise<void> {
   await knex.schema.dropTableIfExists(codeTable);
