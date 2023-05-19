@@ -1,5 +1,5 @@
 import { idolController } from "./../main";
-import express, { Request, Response } from "express";
+import express from "express";
 
 export const idolRoutes = express.Router();
 

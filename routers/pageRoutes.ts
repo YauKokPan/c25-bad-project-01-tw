@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { pageController } from "../main";
 
 export const pageRoutes = express.Router();
